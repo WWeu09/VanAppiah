@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Appiah | Marketing & Digital Growth</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #0056b3;
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?marketing,digital');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #003d82;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #fff;
+            color: #333;
+        }
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .service-card i {
+            font-size: 3rem;
+            color: #0056b3;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 0;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-item-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover .portfolio-item-content {
+            transform: translateY(0);
+        }
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .contact-info, .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .contact-info h3, .contact-form h3 {
+            margin-bottom: 1rem;
+        }
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+        .contact-form form {
+            display: grid;
+            gap: 1rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .contact-form textarea {
+            height: 150px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 3rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-column h3 {
+            margin-bottom: 1rem;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-column ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">VAN APPIAH</a>
+            <ul class="nav-links">
+                <li><a href="#diensten">Diensten</a></li>
+                <li><a href="#over-ons">Over Ons</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Groei Zonder Grenzen</h1>
+            <p>Van Appiah helpt ambitieuze bedrijven groeien met doelgerichte marketing, innovatieve webontwikkeling en strategische branding.</p>
+            <a href="#diensten" class="btn btn-primary">Ontdek Onze Diensten</a>
+            <a href="#contact" class="btn btn-secondary">Neem Contact Op</a>
+        </div>
+    </header>
+
+    <section id="diensten" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Onze Diensten</h2>
+                <p>Van concept tot uitvoering: wij bieden alle digitale diensten die uw bedrijf nodig heeft om te groeien</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Webontwikkeling</h3>
+                    <p>Modern en responsief webdesign dat converteert. Wij bouwen websites die niet alleen mooi zijn, maar ook resultaten leveren.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Marketing</h3>
+                    <p>Doelgerichte marketingstrategieën die uw bedrijf laten groeien. Van social media tot SEO en content marketing.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>E-commerce</h3>
+                    <p>Professionele webshops die verkopen. Wij zorgen voor een naadloze online winkelervaring voor uw klanten.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Branding</h3>
+                    <p>Onderscheidende merkidentiteit die blijft hangen. Wij helpen u een sterk merk te bouwen dat vertrouwen wekt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Onze Partners & Projecten</h2>
+                <p>Ontdek onze succesvolle samenwerkingen met toonaangevende bedrijven in verschillende sectoren</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="rf2.jpg" alt="Rafle L'argent">
+                    <div class="portfolio-item-content">
+                        <h3>Rafle L'argent</h3>
+                        <p>Luxe modehuis met focus op minimalistische elegantie en exclusieve collecties</p>
+                        <a href="http://raflelargent.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Bekijk Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="vng.jpg" alt="Viviana's Nail Glam">
+                    <div class="portfolio-item-content">
+                        <h3>Viviana's Nail Glam</h3>
+                        <p>Complete digitale transformatie en website ontwikkeling voor een premium nagelsalon in Amsterdam</p>
+                        <a href="http://vivianasnailglam.nl/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Bekijk Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="ambex.jpg" alt="Ambex">
+                    <div class="portfolio-item-content">
+                        <h3>Ambex</h3>
+                        <p>Strategische technologie- en web engineering partner voor innovatieve oplossingen</p>
+                        <a href="http://ambex.nl/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Bekijk Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Neem Contact Op</h2>
+                <p>Klaar om uw bedrijf naar het volgende niveau te tillen? Neem contact met ons op.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contactgegevens</h3>
+                    <p><i class="fas fa-phone"></i> 06 57160395</p>
+                    <p><i class="fas fa-envelope"></i> info@vanappiah.com</p>
+                    <p><i class="fas fa-globe"></i> Online beschikbaar</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Stuur ons een bericht</h3>
+                    <form id="contact-form">
+                        <input type="text" name="name" placeholder="Uw naam" required>
+                        <input type="email" name="email" placeholder="Uw e-mailadres" required>
+                        <input type="text" name="subject" placeholder="Onderwerp" required>
+                        <textarea name="message" placeholder="Uw bericht" required></textarea>
+                        <button type="submit" class="btn btn-primary">Verstuur Bericht</button>
+                    </form>
+                </div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>VAN APPIAH</h3>
+                    <p>Uw partner voor digitale groei en innovatie</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#diensten">Diensten</a></li>
+                        <li><a href="#over-ons">Over Ons</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Tel: 06 57160395</li>
+                        <li>E-mail: info@vanappiah.com</li>
+                        <li>Online beschikbaar</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Van Appiah. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            // For this example, we'll just log it to the console
+            console.log('Form submitted');
+            alert('Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
