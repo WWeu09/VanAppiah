@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | Van Appiah</title>
+  <meta name="description" content="Explore Van Appiah's comprehensive range of digital services including web development, marketing, e-commerce and branding.">
+  <!-- Font import -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Base Styles */
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      
+      /* Light theme colors */
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #f1f5f9;
+      --muted-foreground: #64748b;
+      --border: #e2e8f0;
+      --input: #e2e8f0;
+      --primary: #3b82f6;
+      --primary-foreground: #ffffff;
+      --secondary: #f1f5f9;
+      --secondary-foreground: #1e293b;
+      --accent: #f1f5f9;
+      --accent-foreground: #1e293b;
+      --destructive: #ef4444;
+      --destructive-foreground: #ffffff;
+      --card: #ffffff;
+      --card-foreground: #0f172a;
+      
+      --radius: 0.5rem;
+      --header-height: 4rem;
+    }
+
+    .dark {
+      --background: #0f172a;
+      --foreground: #f8fafc;
+      --muted: #1e293b;
+      --muted-foreground: #94a3b8;
+      --border: #1e293b;
+      --input: #1e293b;
+      --primary: #3b82f6;
+      --primary-foreground: #0f172a;
+      --secondary: #1e293b;
+      --secondary-foreground: #f8fafc;
+      --accent: #1e293b;
+      --accent-foreground: #f8fafc;
+      --destructive: #7f1d1d;
+      --destructive-foreground: #f8fafc;
+      --card: #0f172a;
+      --card-foreground: #f8fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* Layout */
+    .site-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: color-mix(in srgb, var(--primary) 90%, black);
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: var(--secondary-foreground);
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: color-mix(in srgb, var(--secondary) 90%, black);
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    .icon-right {
+      width: 1rem;
+      height: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-height);
+      border-bottom: 1px solid var(--border);
+      background-color: color-mix(in srgb, var(--background) 95%, transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .main-nav {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--foreground);
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--accent);
+    }
+
+    .sun-icon, .moon-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .dark .sun-icon {
+      display: block;
+    }
+
+    .dark .moon-icon {
+      display: none;
+    }
+
+    .sun-icon {
+      display: none;
+    }
+
+    .moon-icon {
+      display: block;
+    }
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--foreground);
+    }
+
+    .mobile-menu-toggle:hover {
+      background-color: var(--accent);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 300px;
+      background-color: var(--background);
+      z-index: 100;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-container {
+      padding: 2rem 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu-close {
+      align-self: flex-end;
+      background: transparent;
+      border: none;
+      color: var(--foreground);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-nav {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-nav-link {
+      font-size: 1.125rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link.active {
+      color: var(--primary);
+    }
+
+    .mobile-cta {
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 4rem 0;
+      background-color: var(--muted);
+      text-align: center;
+    }
+
+    .page-header h1 {
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--muted-foreground);
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 4rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.05);
+    }
+
+    .service-content {
+      padding: 1.5rem;
+    }
+
+    .service-content h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .service-content p {
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-feature svg {
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* Process Section */
+    .process-section {
+      padding: 4rem 0;
+      background-color: var(--muted);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .process-step h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .process-step p {
+      color: var(--muted-foreground);
+    }
+
+    /* Social Media Side Menu */
+    .social-side-menu {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--background);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0.5rem;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border: 1px solid var(--border);
+      border-left: none;
+    }
+
+    .social-side-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: var(--muted);
+      color: var(--muted-foreground);
+      transition: all 0.2s ease;
+    }
+
+    .social-side-menu a:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      transform: scale(1.1);
+    }
+
+    .social-side-menu svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 0;
+      background-color: var(--muted);
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .cta-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header p {
+      color: var(--muted-foreground);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 3rem 0 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary);
+    }
+
+    .footer-col ul li span {
+      color: var(--muted-foreground);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: var(--muted);
+      color: var(--muted-foreground);
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .partners-section {
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .partners-section h3 {
+      margin-bottom: 1rem;
+    }
+
+    .partners-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .partners-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .partners-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .powered-by {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      margin-top: 1.5rem;
+    }
+
+    /* Media Queries */
+    @media (min-width: 640px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      h1 {
+        font-size: 3rem;
+      }
+      
+      h2 {
+        font-size: 2.25rem;
+      }
+      
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .main-nav {
+        display: flex;
+        align-items: center;
+        margin-left: 1.5rem;
+      }
+      
+      .desktop-only {
+        display: inline-flex;
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .process-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .cta-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 2rem;
+      }
+      
+      h1 {
+        font-size: 3.5rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo">Van Appiah</a>
+        
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link active">Services</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        
+        <div class="header-actions">
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
+          <a href="contact.html" class="btn btn-primary desktop-only">Contact Us</a>
+          
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+  
+    <!-- Social Side Menu -->
+    <div class="social-side-menu">
+      <a href="https://linktr.ee/VanAppiah" target="_blank" rel="noopener noreferrer" aria-label="Linktree">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+      </a>
+      <a href="https://www.tiktok.com/@raflelargent?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path><path d="M15 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path><path d="M15 8v8a4 4 0 0 1-4 4"></path><path d="M15 8h-4"></path></svg>
+      </a>
+      <a href="https://www.snapchat.com/add/raflelargent?sender_web_id=09f2bd4f-c55b-4639-9678-cf1c118a087c&device_type=desktop&is_copy_url=true" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2.8 0-5 2.2-5 5v3c0 1.1-.9 2-2 2 0 0 0 1.1 1 2 1 .9 1 1 1 3 0 1.7 1.3 3 3 3 0 0 1 0 2 1 1 1 2 1 2 1 1.7 0 3-1.3 3-3 0-2 0-2.1 1-3 1-.9 1-2 1-2-1.1 0-2-.9-2-2V7c0-2.8-2.2-5-5-5z"></path></svg>
+      </a>
+      <a href="https://www.instagram.com/van_appiah/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <div class="mobile-menu-container">
+        <button class="mobile-menu-close" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+        <nav class="mobile-nav">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+          <a href="services.html" class="mobile-nav-link">Services</a>
+          <a href="projects.html" class="mobile-nav-link">Projects</a>
+          <a href="contact.html" class="mobile-nav-link">Contact</a>
+          <a href="contact.html" class="btn btn-primary mobile-cta">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1>Our Services</h1>
+          <p>We offer a comprehensive range of digital services to help your business thrive in the digital landscape.</p>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="services-section">
+        <div class="container">
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-image">
+                <img src="Van Appiah Web Development.jpg" alt="Web Development">
+              </div>
+              <div class="service-content">
+                <h3>Web Development</h3>
+                <p>We create modern, responsive websites that are optimized for performance and user experience.</p>
+                <div class="service-features">
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Responsive Design</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>SEO Optimization</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Fast Loading Speed</span>
+                  </div>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-image">
+                <img src="digitalmarketing.jpg" alt="Digital Marketing">
+              </div>
+              <div class="service-content">
+                <h3>Digital Marketing</h3>
+                <p>We help you reach your target audience and grow your business with effective digital marketing strategies.</p>
+                <div class="service-features">
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Social Media Marketing</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Search Engine Marketing</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Content Marketing</span>
+                  </div>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-image">
+                <img src="Ecommerce.jpg" alt="E-commerce">
+              </div>
+              <div class="service-content">
+                <h3>E-commerce</h3>
+                <p>We build powerful online stores that drive conversions and provide a seamless shopping experience.</p>
+                <div class="service-features">
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Custom Online Stores</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Payment Integration</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Inventory Management</span>
+                  </div>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-image">
+                <img src="branding.jpg" alt="Branding">
+              </div>
+              <div class="service-content">
+                <h3>Branding</h3>
+                <p>We help you create a strong brand identity that resonates with your target audience and sets you apart from competitors.</p>
+                <div class="service-features">
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Logo Design</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Brand Strategy</span>
+                  </div>
+                  <div class="service-feature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <span>Visual Identity</span>
+                  </div>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class="process-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Our Process</h2>
+            <p>We follow a structured approach to ensure the success of your project.</p>
+          </div>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <h3>Discovery</h3>
+              <p>We start by understanding your business, goals, and target audience to create a tailored strategy.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <h3>Design & Development</h3>
+              <p>Our team creates designs and develops solutions that align with your brand and meet your objectives.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">3</div>
+              <h3>Launch & Support</h3>
+              <p>We launch your project and provide ongoing support to ensure its continued success.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today to discuss your project and how we can help you achieve your goals.</p>
+          </div>
+          <div class="section-footer" style="text-align: center; margin-top: 2rem;">
+            <a href="contact.html" class="btn btn-primary">Contact Us <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Van Appiah</h3>
+            <p>Innovative digital agency specializing in web development, marketing, e-commerce and branding.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="services.html">Web Development</a></li>
+              <li><a href="services.html">Digital Marketing</a></li>
+              <li><a href="services.html">E-commerce</a></li>
+              <li><a href="services.html">Branding</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="index.html">About Us</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><span>Tel:</span> 06 57160395</li>
+              <li><span>Email:</span> vanappiah.com@gmail.com</li>
+            </ul>
+            <div class="social-links">
+              <a href="https://linktr.ee/VanAppiah" target="_blank" rel="noopener noreferrer" aria-label="Linktree">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/van_appiah/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="https://www.tiktok.com/@raflelargent?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                  <path d="M15 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+                  <path d="M15 8v8a4 4 0 0 1-4 4"></path>
+                  <path d="M15 8h-4"></path>
+                </svg>
+              </a>
+              <a href="https://www.snapchat.com/add/raflelargent?sender_web_id=a5be8c9c-70bb-48a8-97f3-096216fdeeeb&device_type=desktop&is_copy_url=true" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2c-2.8 0-5 2.2-5 5v3c0 1.1-.9 2-2 2 0 0 0 1.1 1 2 1 .9 1 1 1 3 0 1.7 1.3 3 3 3 0 0 1 0 2 1 1 1 2 1 2 1 1.7 0 3-1.3 3-3 0-2 0-2.1 1-3 1-.9 1-2 1-2-1.1 0-2-.9-2-2V7c0-2.8-2.2-5-5-5z"></path>
+                </svg>
+              </a>
+            </div>
+            <br>
+
+        <div class="partners-section">
+          <h3>Our Websites</h3>
+          <div class="partners-links">
+            <a href="https://vanappiah.com" target="_blank" rel="noopener noreferrer">Van Appiah</a>
+            <a href="https://streetwear.eu0" target="_blank" rel="noopener noreferrer">Streetwear</a>
+            <a href="https://ambex.com" target="_blank" rel="noopener noreferrer">Ambex</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; <span class="current-year"></span> Van Appiah. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+
+        <div class="powered-by">
+          Powered by Van Appiah
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // DOM Elements
+    const body = document.body;
+    const themeToggle = document.querySelector('.theme-toggle');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const currentYearElements = document.querySelectorAll('.current-year');
+
+    // Theme Toggle
+    function initTheme() {
+      // Check for saved theme preference or use system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        body.classList.add('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Mobile Menu
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('active');
+    }
+
+    // Set Current Year
+    function setCurrentYear() {
+      const year = new Date().getFullYear();
+      currentYearElements.forEach(el => {
+        el.textContent = year;
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      initTheme();
+      setCurrentYear();
+      
+      // Event Listeners
+      themeToggle.addEventListener('click', toggleTheme);
+      mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+      mobileMenuClose.addEventListener('click', toggleMobileMenu);
+    });
+  </script>
+</body>
+</html>
