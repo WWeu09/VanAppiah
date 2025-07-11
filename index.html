@@ -712,6 +712,120 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Footer Styles */
+        .site-footer {
+            background-color: #F9F9F9;
+            color: #4B4B4B;
+            padding: clamp(2rem, 5vw, 4rem) 0;
+            margin-top: auto;
+            font-family: var(--font-primary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0;
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: #4B4B4B;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #4B4B4B;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0 0 1rem 0;
+            font-family: var(--font-display);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #4B4B4B;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-contact-item:hover {
+            color: #000000;
+        }
+
+        .footer-icon {
+            font-size: 1rem;
+            width: 20px;
+            display: inline-block;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            font-size: 0.875rem;
+            color: #4B4B4B;
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.25rem 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-link:hover {
+            color: #000000;
+            border-bottom-color: #000000;
+        }
+
+        .footer-link:focus {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -773,6 +887,15 @@
             .stat-card {
                 padding: 1.5rem;
             }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem 1.5rem;
+            }
+
+            .footer-container {
+                padding: 0 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -790,6 +913,28 @@
 
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .site-footer {
+                padding: clamp(1.5rem, 4vw, 2rem) 0;
+            }
+
+            .footer-contact-item,
+            .footer-link {
+                font-size: 0.8rem;
+            }
+
+            .footer-title {
+                font-size: 0.9rem;
+            }
+
+            .footer-logo {
+                font-size: 1.3rem;
             }
         }
 
@@ -996,7 +1141,160 @@
                 </div>
             </section>
         </div>
+
+        <!-- Terms Page -->
+        <div class="page" id="terms">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Terms & Conditions</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            Last updated: January 2025
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            Welcome to Van Appiah. These terms and conditions outline the rules and regulations for the use of our services.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            By accessing and using our services, you accept these terms and conditions in full. Do not continue to use Van Appiah's services if you do not accept all of the terms and conditions stated on this page.
+                        </p>
+                        <div class="hero-buttons" style="margin-top: 3rem;">
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Return Policy Page -->
+        <div class="page" id="return">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Return Policy</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            Last updated: January 2025
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            At Van Appiah, we strive for complete client satisfaction with our digital solutions and services.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            For questions about our return policy or to discuss your specific situation, please contact us directly.
+                        </p>
+                        <div class="hero-buttons" style="margin-top: 3rem;">
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Service & Warranty Page -->
+        <div class="page" id="warranty">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Service & Warranty</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            Last updated: January 2025
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            Van Appiah provides comprehensive service and warranty coverage for all our digital solutions.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            We stand behind the quality of our work and offer ongoing support to ensure your digital presence continues to perform optimally.
+                        </p>
+                        <div class="hero-buttons" style="margin-top: 3rem;">
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Privacy Policy Page -->
+        <div class="page" id="privacy">
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Privacy Policy</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            Last updated: January 2025
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            Van Appiah respects your privacy and is committed to protecting your personal data.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            This privacy policy explains how we collect, use, and protect your information when you use our services.
+                        </p>
+                        <div class="hero-buttons" style="margin-top: 3rem;">
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Column 1 - Brand -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <h3 class="footer-logo">Van Appiah</h3>
+                        <p class="footer-tagline">Creative & Digital Agency</p>
+                        <p class="footer-copyright">© 2025 Van Appiah</p>
+                    </div>
+                </div>
+
+                <!-- Column 2 - Contact -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <div class="footer-contact">
+                        <a href="mailto:info@vanappiah.com" class="footer-contact-item">
+                            <span class="footer-icon">✉</span>
+                            <span>info@vanappiah.com</span>
+                        </a>
+                        <a href="tel:+31657160395" class="footer-contact-item">
+                            <span class="footer-icon">📞</span>
+                            <span>06 57160395</span>
+                        </a>
+                        <a href="https://www.vanappiah.com" target="_blank" class="footer-contact-item">
+                            <span class="footer-icon">🌐</span>
+                            <span>www.vanappiah.com</span>
+                        </a>
+                        <div class="footer-contact-item">
+                            <span class="footer-icon">📍</span>
+                            <span>Nederland</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 - Quick Links -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Snelkoppelingen</h4>
+                    <nav class="footer-nav">
+                        <a href="#" onclick="showPage('home')" class="footer-link">Home</a>
+                        <a href="#" onclick="showPage('portfolio')" class="footer-link">Portfolio</a>
+                        <a href="#" onclick="showPage('about')" class="footer-link">Over ons</a>
+                        <a href="#" onclick="showPage('contact')" class="footer-link">Contact</a>
+                    </nav>
+                </div>
+
+                <!-- Column 4 - Legal -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Juridisch</h4>
+                    <nav class="footer-nav">
+                        <a href="#" onclick="showPage('terms')" class="footer-link" aria-label="View terms and conditions">Terms & Conditions</a>
+                        <a href="#" onclick="showPage('return')" class="footer-link" aria-label="View return policy">Return Policy</a>
+                        <a href="#" onclick="showPage('warranty')" class="footer-link" aria-label="View service and warranty information">Service & Warranty</a>
+                        <a href="#" onclick="showPage('privacy')" class="footer-link" aria-label="View privacy policy">Privacy Policy</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modal -->
     <div class="modal" id="modal">
@@ -1337,7 +1635,7 @@ Sent from Van Appiah website contact form
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page');
             
-            if (page && ['home', 'portfolio', 'about', 'contact'].includes(page)) {
+            if (page && ['home', 'portfolio', 'about', 'contact', 'terms', 'return', 'warranty', 'privacy'].includes(page)) {
                 showPage(page);
             }
         }
