@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Van Appiah - Digital Solutions & Portfolio</title>
-    <meta name="description" content="Van Appiah - Custom digital solutions, websites, and applications for businesses">
+    <meta name="description" content="Van Appiah ontwikkelt op maat gemaakte websites, webshops en strategieën die bedrijven online laten groeien.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
@@ -27,6 +30,9 @@
             --border-light: #e5e7eb;
             --accent-blue: #3b82f6;
             --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
             --text-primary: #111827;
             --text-secondary: #6b7280;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -36,8 +42,14 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            --border-radius: 12px;
-            --border-radius-sm: 8px;
+            --border-radius: 16px;
+            --border-radius-sm: 12px;
+            --border-radius-xs: 8px;
+            
+            /* Category Colors */
+            --category-ecommerce: #8e44ad;
+            --category-webdesign: #2980b9;
+            --category-showcase: #27ae60;
         }
 
         /* Reset & Base */
@@ -134,7 +146,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -202,6 +214,38 @@
             cursor: pointer;
             color: var(--primary-dark);
             padding: 0.5rem;
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background: var(--accent-blue);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-contact:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         /* Page Container */
@@ -228,12 +272,13 @@
             background: linear-gradient(135deg, var(--background-light) 0%, var(--background-white) 100%);
             position: relative;
             overflow: hidden;
+            padding: 2rem 1rem;
         }
 
         .hero-content {
             text-align: center;
             max-width: 900px;
-            padding: 0 2rem;
+            width: 100%;
             z-index: 2;
         }
 
@@ -256,7 +301,7 @@
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-secondary);
             margin-bottom: 3rem;
             max-width: 700px;
@@ -264,6 +309,7 @@
             margin-right: auto;
             line-height: 1.7;
             animation: fadeInUp 1s ease-out 0.6s both;
+            font-weight: 500;
         }
 
         .hero-buttons {
@@ -274,6 +320,37 @@
             animation: fadeInUp 1s ease-out 0.8s both;
         }
 
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -282,24 +359,41 @@
             border-radius: var(--border-radius-sm);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition);
             cursor: pointer;
             border: none;
             min-width: 160px;
+            min-height: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
             color: var(--background-white);
             border: 2px solid var(--primary-dark);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
-            background: transparent;
-            color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
         }
 
         .btn-outline {
@@ -312,12 +406,12 @@
             background: var(--primary-dark);
             color: var(--background-white);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
         }
 
         /* Section Styles */
         .section {
-            padding: 5rem 0;
+            padding: 4rem 0;
         }
 
         .section-alt {
@@ -327,12 +421,12 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             text-align: center;
             margin-bottom: 1rem;
@@ -341,24 +435,31 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             color: var(--text-secondary);
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
         }
 
-        /* Portfolio Grid */
+        /* Modern Portfolio Grid */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
-        .portfolio-card {
+        .mini-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-card, .mini-portfolio-card {
             background: var(--background-white);
             border-radius: var(--border-radius);
             overflow: hidden;
@@ -366,16 +467,18 @@
             transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--border-light);
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
         }
 
-        .portfolio-card:hover {
+        .portfolio-card:hover, .mini-portfolio-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
         }
 
-        .portfolio-image {
+        .portfolio-image, .mini-portfolio-image {
             width: 100%;
-            height: 250px;
+            height: 220px;
             background: var(--background-light);
             display: flex;
             align-items: center;
@@ -384,237 +487,294 @@
             overflow: hidden;
         }
 
-        .portfolio-image img {
+        .mini-portfolio-image {
+            height: 180px;
+        }
+
+        .portfolio-image img, .mini-portfolio-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .portfolio-card:hover .portfolio-image img {
+        .portfolio-card:hover .portfolio-image img,
+        .mini-portfolio-card:hover .mini-portfolio-image img {
             transform: scale(1.05);
         }
 
-        .portfolio-content {
-            padding: 2rem;
+        .portfolio-content, .mini-portfolio-content {
+            padding: 1.5rem;
         }
 
-        .portfolio-category {
+        .portfolio-badges, .mini-portfolio-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .portfolio-category, .mini-portfolio-category {
             display: inline-block;
-            background: var(--accent-blue);
-            color: var(--background-white);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 1rem;
+            color: white;
         }
 
-        .portfolio-title {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--primary-dark);
-            line-height: 1.3;
+        .category-ecommerce {
+            background: var(--category-ecommerce);
         }
 
-        .portfolio-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+        .category-webdesign {
+            background: var(--category-webdesign);
         }
 
-        .portfolio-meta {
-            display: flex;
-            justify-content: space-between;
+        .category-showcase {
+            background: var(--category-showcase);
+        }
+
+        .status-badge {
+            display: inline-flex;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-light);
-            font-size: 0.9rem;
-        }
-
-        .portfolio-client {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .portfolio-status {
+            gap: 0.25rem;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status-completed {
             background: var(--accent-green);
-            color: var(--background-white);
+            color: white;
         }
 
-        .status-in-progress {
-            background: #f59e0b;
-            color: var(--background-white);
-        }
-
-        .status-planned {
+        .status-coming-soon {
             background: var(--light-grey);
-            color: var(--background-white);
+            color: white;
         }
 
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            padding: 2rem;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: var(--background-white);
-            border-radius: var(--border-radius);
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: scale(0.9);
-            transition: var(--transition);
-        }
-
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            padding: 2rem 2rem 1rem;
-            border-bottom: 1px solid var(--border-light);
-            position: relative;
-        }
-
-        .modal-title {
+        .portfolio-title, .mini-portfolio-title {
             font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .modal-close:hover {
+            margin-bottom: 0.5rem;
             color: var(--primary-dark);
-            background: var(--background-light);
+            line-height: 1.3;
         }
 
-        .modal-body {
-            padding: 2rem;
+        .portfolio-description, .mini-portfolio-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
-        .modal-image {
-            width: 100%;
-            height: 300px;
+        .portfolio-meta, .mini-portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-client, .mini-portfolio-client {
+            font-style: italic;
+        }
+
+        .portfolio-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-xs);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            min-height: 36px;
+        }
+
+        .portfolio-btn-primary {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .portfolio-btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .portfolio-btn-secondary {
             background: var(--background-light);
-            border-radius: var(--border-radius-sm);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        .portfolio-btn-secondary:hover {
+            background: var(--border-light);
+            color: var(--text-primary);
+        }
+
+        /* Project Detail Page */
+        .project-detail {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .project-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
             margin-bottom: 2rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-xs);
+            transition: var(--transition);
+            min-height: 48px;
+            background: var(--background-white);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-back-btn:hover {
+            background: var(--background-light);
+            transform: translateX(-2px);
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
 
-        .modal-image img {
+        .project-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .modal-details {
+        .project-info {
             display: grid;
-            gap: 1.5rem;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .detail-row {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 1rem;
-            align-items: start;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-light);
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
         }
 
-        .detail-label {
+        .project-sidebar {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            height: fit-content;
+        }
+
+        .project-detail-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-detail-label {
             font-weight: 600;
             color: var(--primary-dark);
+            margin-bottom: 0.5rem;
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .detail-value {
+        .project-detail-value {
             color: var(--text-secondary);
-            line-height: 1.6;
         }
 
-        .tech-tags {
+        .project-tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
         .tech-tag {
-            background: var(--background-light);
+            background: var(--background-white);
             color: var(--text-primary);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
+            border: 1px solid var(--border-light);
         }
 
-        .website-link {
+        .project-website-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--accent-blue);
+            background: var(--accent-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
+            margin-top: 2rem;
+            min-height: 48px;
+            width: 100%;
+            justify-content: center;
         }
 
-        .website-link:hover {
-            color: var(--primary-dark);
+        .project-website-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-website-btn.disabled {
+            background: var(--light-grey);
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
         /* Contact Section */
@@ -644,6 +804,7 @@
             font-size: 1rem;
             transition: var(--transition);
             background: var(--background-white);
+            min-height: 48px;
         }
 
         .form-input:focus,
@@ -662,13 +823,13 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .stat-card {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             background: var(--background-white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-md);
@@ -676,7 +837,7 @@
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--accent-blue);
             margin-bottom: 0.5rem;
@@ -687,7 +848,237 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        /* Modern Social Icons */
+        .social-icon, .footer-social-icon {
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.5;
+            transition: var(--transition);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.75rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            min-height: 48px;
+            background: var(--background-white);
+        }
+
+        .social-link:hover {
+            color: var(--primary-dark);
+            background: var(--background-light);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--background-white);
+            padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+            margin-top: auto;
+            font-family: var(--font-primary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--background-white);
+            margin: 0 0 1.5rem 0;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            min-height: 48px;
+        }
+
+        .footer-contact-item:hover {
+            color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .footer-icon {
+            font-size: 1.1rem;
+            width: 24px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 48px;
+        }
+
+        .footer-social-link:hover {
+            color: var(--background-white);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer-social-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
+        }
+
+        .footer-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            min-height: 48px;
+        }
+
+        .footer-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background: white;
+            color: var(--primary-dark);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 48px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
         }
 
         /* Animations */
@@ -712,121 +1103,19 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Footer Styles */
-        .site-footer {
-            background-color: #F9F9F9;
-            color: #4B4B4B;
-            padding: clamp(2rem, 5vw, 4rem) 0;
-            margin-top: auto;
-            font-family: var(--font-primary);
+        /* Intersection Observer Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin: 0;
-        }
-
-        .footer-tagline {
-            font-size: 0.875rem;
-            color: #4B4B4B;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .footer-copyright {
-            font-size: 0.75rem;
-            color: #4B4B4B;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .footer-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin: 0 0 1rem 0;
-            font-family: var(--font-display);
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: #4B4B4B;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-contact-item:hover {
-            color: #000000;
-        }
-
-        .footer-icon {
-            font-size: 1rem;
-            width: 20px;
-            display: inline-block;
-        }
-
-        .footer-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-link {
-            font-size: 0.875rem;
-            color: #4B4B4B;
-            text-decoration: none;
-            transition: var(--transition);
-            padding: 0.25rem 0;
-            border-bottom: 1px solid transparent;
-        }
-
-        .footer-link:hover {
-            color: #000000;
-            border-bottom-color: #000000;
-        }
-
-        .footer-link:focus {
-            outline: 2px solid var(--accent-blue);
-            outline-offset: 2px;
-            border-radius: 2px;
-        }
-
-        /* Responsive Design */
+        /* Responsive Design - Mobile First */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -836,9 +1125,9 @@
                 right: 0;
                 background: var(--background-white);
                 flex-direction: column;
-                padding: 1rem 2rem;
+                padding: 1rem;
                 box-shadow: var(--shadow-lg);
-                gap: 1rem;
+                gap: 0.5rem;
                 border-top: 1px solid var(--border-light);
             }
 
@@ -853,6 +1142,7 @@
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
             }
 
             .btn {
@@ -865,18 +1155,22 @@
                 gap: 1.5rem;
             }
 
-            .modal {
-                padding: 1rem;
-            }
-
-            .modal-header,
-            .modal-body {
-                padding: 1.5rem;
-            }
-
-            .detail-row {
+            .mini-portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                gap: 1.5rem;
+            }
+
+            .project-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-sidebar {
+                order: -1;
+            }
+
+            .project-image {
+                height: 250px;
             }
 
             .stats-grid {
@@ -885,16 +1179,35 @@
             }
 
             .stat-card {
-                padding: 1.5rem;
+                padding: 1.5rem 1rem;
             }
 
             .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .footer-container {
-                padding: 0 1rem;
+            .social-links {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .floating-contact {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+            }
+
+            .project-back-btn {
+                position: sticky;
+                top: 100px;
+                z-index: 100;
+                margin-bottom: 2rem;
+                width: fit-content;
             }
         }
 
@@ -903,38 +1216,25 @@
                 padding: 0 1rem;
             }
 
-            .section {
-                padding: 3rem 0;
-            }
-
-            .portfolio-content {
-                padding: 1.5rem;
+            .portfolio-content, .mini-portfolio-content {
+                padding: 1.25rem;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero {
+                min-height: 80vh;
+                padding: 1rem;
             }
 
-            .site-footer {
-                padding: clamp(1.5rem, 4vw, 2rem) 0;
+            .project-detail {
+                padding: 1rem;
             }
 
-            .footer-contact-item,
-            .footer-link {
-                font-size: 0.8rem;
-            }
-
-            .footer-title {
-                font-size: 0.9rem;
-            }
-
-            .footer-logo {
-                font-size: 1.3rem;
+            .project-sidebar {
+                padding: 1.5rem;
             }
         }
 
@@ -981,12 +1281,17 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
                 <li><a href="#" onclick="showPage('portfolio')" class="nav-link" data-page="portfolio">Portfolio</a></li>
-                <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">About</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">Over ons</a></li>
                 <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
         </div>
     </nav>
+
+    <!-- Floating Contact Button -->
+    <a href="#" onclick="showPage('contact')" class="floating-contact" aria-label="Contact opnemen">
+        <i data-lucide="phone" style="width: 24px; height: 24px;"></i>
+    </a>
 
     <!-- Page Container -->
     <div class="page-container">
@@ -994,22 +1299,60 @@
         <div class="page active" id="home">
             <section class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">Van Appiah</h1>
-                    <p class="hero-subtitle">Custom Digital Solutions & Web Development</p>
+                    <h1 class="hero-title">Digitale oplossingen met impact.</h1>
+                    <p class="hero-subtitle">Van Appiah helpt merken groeien met moderne websites, branding en slimme systemen.</p>
                     <p class="hero-description">
-                        We create and manage tailored websites and applications, helping businesses present themselves 
-                        and grow in the digital world. From e-commerce to showcase sites, we provide innovative 
-                        solutions that drive success.
+                        Wij bouwen websites, merken & digitale ervaringen die echt werken. Van showcase-sites tot complete e-commerce platforms - alles op maat gemaakt voor jouw succes.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary" onclick="showPage('portfolio')">View Portfolio</a>
-                        <a href="#" class="btn btn-outline" onclick="showPage('contact')">Get In Touch</a>
+                        <a href="#portfolio" class="btn btn-primary" onclick="document.getElementById('portfolio-section').scrollIntoView({behavior: 'smooth'})">Bekijk ons werk</a>
+                        <a href="#" class="btn btn-outline" onclick="showPage('contact')">Start je project</a>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Scroll om meer te ontdekken</span>
+                    <i data-lucide="chevron-down" class="scroll-arrow"></i>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="section animate-on-scroll" id="portfolio-section">
+                <div class="container">
+                    <h2 class="section-title">Recent Work</h2>
+                    <p class="section-subtitle">
+                        Een selectie van onze nieuwste projecten - van luxe e-commerce tot moderne showcase sites
+                    </p>
+                    <div class="mini-portfolio-grid" id="miniPortfolioGrid">
+                        <!-- Mini portfolio items will be loaded here -->
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                    </div>
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="#" class="btn btn-outline" onclick="showPage('portfolio')">Bekijk alle projecten</a>
                     </div>
                 </div>
             </section>
 
+            <!-- CTA Section -->
+            <section class="cta-section animate-on-scroll">
+                <div class="container">
+                    <h2 class="cta-title">Benieuwd wat we voor jou kunnen betekenen?</h2>
+                    <p class="cta-description">
+                        Laten we samen kijken hoe we jouw digitale ambities kunnen realiseren
+                    </p>
+                    <a href="#" class="cta-btn" onclick="showPage('contact')">
+                        <span>Bekijk onze diensten</span>
+                        <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                    </a>
+                </div>
+            </section>
+
             <!-- Stats Section -->
-            <section class="section section-alt">
+            <section class="section section-alt animate-on-scroll">
                 <div class="container">
                     <div class="stats-grid" id="statsGrid">
                         <div class="stat-card">
@@ -1039,8 +1382,7 @@
                 <div class="container">
                     <h2 class="section-title">Our Portfolio</h2>
                     <p class="section-subtitle">
-                        Explore our diverse range of digital solutions, from corporate showcases to e-commerce platforms. 
-                        Each project represents our commitment to quality, creativity, and client success.
+                        Ons Werk. Jouw Inspiratie. Van showcase-websites tot luxe ecommerce - dit is wat wij bouwen.
                     </p>
                     <div class="portfolio-grid" id="portfolioGrid">
                         <!-- Portfolio items will be loaded here -->
@@ -1052,35 +1394,44 @@
             </section>
         </div>
 
+        <!-- Project Detail Page -->
+        <div class="page" id="project-detail">
+            <section class="section">
+                <div class="project-detail" id="projectDetailContent">
+                    <!-- Project detail content will be loaded here -->
+                </div>
+            </section>
+        </div>
+
         <!-- About Page -->
         <div class="page" id="about">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">About Van Appiah</h2>
+                    <h2 class="section-title">Over Van Appiah</h2>
                     <p class="section-subtitle">
-                        Innovation meets expertise in digital solutions
+                        Innovatie ontmoet expertise in digitale oplossingen
                     </p>
                     
                     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                         <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
-                            Van Appiah is an innovative company focused on developing custom digital solutions and supporting 
-                            various businesses. We create and manage tailored websites and applications, such as showcase sites, 
-                            helping businesses present themselves and grow.
+                            Van Appiah is een innovatief bedrijf gericht op het ontwikkelen van op maat gemaakte digitale oplossingen 
+                            en het ondersteunen van verschillende bedrijven. We creëren en beheren websites en applicaties op maat, 
+                            zoals showcase-sites, die bedrijven helpen zichzelf te presenteren en te groeien.
                         </p>
                         
                         <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
-                            From e-commerce and social media to designing unique brand strategies, Van Appiah offers a wide 
-                            range of services that help companies in different sectors achieve their goals.
+                            Van e-commerce en sociale media tot het ontwerpen van unieke merkstrategieën, Van Appiah biedt een breed 
+                            scala aan diensten die bedrijven in verschillende sectoren helpen hun doelen te bereiken.
                         </p>
                         
                         <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 3rem;">
-                            With a focus on quality, creativity, and collaboration, we strive to provide every client with 
-                            the tools and support they need to succeed in the digital world.
+                            Met een focus op kwaliteit, creativiteit en samenwerking streven we ernaar elke klant de tools en 
+                            ondersteuning te bieden die ze nodig hebben om te slagen in de digitale wereld.
                         </p>
 
                         <div class="hero-buttons">
-                            <a href="#" class="btn btn-primary" onclick="showPage('portfolio')">View Our Work</a>
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Start Your Project</a>
+                            <a href="#" class="btn btn-primary" onclick="showPage('portfolio')">Bekijk Ons Werk</a>
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Start Je Project</a>
                         </div>
                     </div>
                 </div>
@@ -1091,35 +1442,61 @@
         <div class="page" id="contact">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Get In Touch</h2>
+                    <h2 class="section-title">Neem Contact Op</h2>
                     <p class="section-subtitle">
-                        Ready to start your next digital project? Let's discuss how we can help your business grow.
+                        Klaar om je volgende digitale project te starten? Laten we bespreken hoe we jouw bedrijf kunnen laten groeien.
                     </p>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem;">
                         <div>
-                            <h3 class="mb-3" style="color: var(--primary-dark); font-family: var(--font-display); font-size: 1.5rem;">Contact Information</h3>
+                            <h3 class="mb-3" style="color: var(--primary-dark); font-family: var(--font-display); font-size: 1.5rem;">Contactgegevens</h3>
                             <div class="mb-4">
                                 <p style="margin-bottom: 1rem;"><strong>Website:</strong> <a href="https://vanappiah.com" target="_blank" style="color: var(--accent-blue);">vanappiah.com</a></p>
-                                <p style="margin-bottom: 1rem;"><strong>Email:</strong> info@vanappiah.com</p>
-                                <p style="margin-bottom: 1rem;"><strong>Location:</strong> Netherlands</p>
-                                <p style="margin-bottom: 1rem;"><strong>Response Time:</strong> Within 24 hours</p>
+                                <p style="margin-bottom: 1rem;"><strong>Email:</strong> vanappiah.com@gmail.com</p>
+                                <p style="margin-bottom: 1rem;"><strong>Telefoon:</strong> 06 57160395</p>
+                                <p style="margin-bottom: 1rem;"><strong>Locatie:</strong> Nederland</p>
+                                <p style="margin-bottom: 1rem;"><strong>Reactietijd:</strong> Binnen 24 uur</p>
                             </div>
+
+                            <a href="https://wa.me/31657160395" target="_blank" class="footer-whatsapp">
+                                <span>💬</span>
+                                Stel je vraag via WhatsApp
+                            </a>
                             
-                            <h4 class="mb-2" style="color: var(--primary-dark); font-size: 1.2rem;">Our Services</h4>
+                            <h4 class="mb-2 mt-4" style="color: var(--primary-dark); font-size: 1.2rem;">Onze Diensten</h4>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Custom Website Development</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• E-commerce Solutions</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Corporate Showcase Sites</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Brand Strategy & Design</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Digital Marketing Support</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Op Maat Gemaakte Website Ontwikkeling</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• E-commerce Oplossingen</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Bedrijfs Showcase Sites</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Merkstrategie & Design</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Digitale Marketing Ondersteuning</li>
                             </ul>
+
+                            <h4 class="mb-2 mt-4" style="color: var(--primary-dark); font-size: 1.2rem;">Volg Ons</h4>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/van_appiah/" target="_blank" class="social-link">
+                                    <i data-lucide="instagram" class="social-icon"></i>
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="social-link">
+                                    <i data-lucide="facebook" class="social-icon"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="https://linkedin.com/company/vanappiah" target="_blank" class="social-link">
+                                    <i data-lucide="linkedin" class="social-icon"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://x.com/vanappiah" target="_blank" class="social-link">
+                                    <i data-lucide="twitter" class="social-icon"></i>
+                                    <span>X (Twitter)</span>
+                                </a>
+                            </div>
                         </div>
                         
                         <div>
                             <form class="contact-form" onsubmit="handleContactForm(event)">
                                 <div class="form-group">
-                                    <label for="name" class="form-label">Name</label>
+                                    <label for="name" class="form-label">Naam</label>
                                     <input type="text" id="name" name="name" class="form-input" required>
                                 </div>
                                 <div class="form-group">
@@ -1127,14 +1504,14 @@
                                     <input type="email" id="email" name="email" class="form-input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="subject" class="form-label">Subject</label>
+                                    <label for="subject" class="form-label">Onderwerp</label>
                                     <input type="text" id="subject" name="subject" class="form-input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea id="message" name="message" class="form-textarea" required placeholder="Tell us about your project..."></textarea>
+                                    <label for="message" class="form-label">Bericht</label>
+                                    <textarea id="message" name="message" class="form-textarea" required placeholder="Vertel ons over je project..."></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Verstuur Bericht</button>
                             </form>
                         </div>
                     </div>
@@ -1142,92 +1519,95 @@
             </section>
         </div>
 
-        <!-- Terms Page -->
+        <!-- Legal Pages -->
         <div class="page" id="terms">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Terms & Conditions</h2>
+                    <h2 class="section-title">Algemene Voorwaarden</h2>
                     <div style="max-width: 800px; margin: 0 auto; text-align: left;">
                         <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Last updated: January 2025
+                            Laatst bijgewerkt: Januari 2025
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Welcome to Van Appiah. These terms and conditions outline the rules and regulations for the use of our services.
+                            Door gebruik te maken van onze diensten ga je akkoord met deze voorwaarden. Van Appiah is niet aansprakelijk voor indirecte schade, dataverlies of fouten van derden.
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            By accessing and using our services, you accept these terms and conditions in full. Do not continue to use Van Appiah's services if you do not accept all of the terms and conditions stated on this page.
+                            Alle ontwerpen, sites en producten blijven eigendom van Van Appiah tot volledige betaling. Wij behouden het recht om projecten als portfolio-vermelding te tonen.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            Voor klachten, feedback of vragen kun je contact met ons opnemen via vanappiah.com@gmail.com.
                         </p>
                         <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Return Policy Page -->
         <div class="page" id="return">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Return Policy</h2>
+                    <h2 class="section-title">Retourbeleid</h2>
                     <div style="max-width: 800px; margin: 0 auto; text-align: left;">
                         <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Last updated: January 2025
+                            Laatst bijgewerkt: Januari 2025
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            At Van Appiah, we strive for complete client satisfaction with our digital solutions and services.
+                            Aangezien wij digitale diensten leveren, kunnen reeds uitgevoerde projecten of uren niet worden geretourneerd. Bij ontevredenheid streven we altijd naar een passende oplossing.
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            For questions about our return policy or to discuss your specific situation, please contact us directly.
+                            Neem direct contact met ons op om je situatie te bespreken.
                         </p>
                         <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Service & Warranty Page -->
         <div class="page" id="warranty">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Service & Warranty</h2>
+                    <h2 class="section-title">Service & Garantie</h2>
                     <div style="max-width: 800px; margin: 0 auto; text-align: left;">
                         <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Last updated: January 2025
+                            Laatst bijgewerkt: Januari 2025
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Van Appiah provides comprehensive service and warranty coverage for all our digital solutions.
+                            Wij bieden ondersteuning op al onze digitale oplossingen tot 30 dagen na oplevering.
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            We stand behind the quality of our work and offer ongoing support to ensure your digital presence continues to perform optimally.
+                            Na deze periode bieden we onderhoud of aanpassingen tegen een afgesproken tarief. Klanten kunnen altijd contact opnemen voor ondersteuning, updates of uitbreidingen.
                         </p>
                         <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Privacy Policy Page -->
         <div class="page" id="privacy">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Privacy Policy</h2>
+                    <h2 class="section-title">Privacybeleid</h2>
                     <div style="max-width: 800px; margin: 0 auto; text-align: left;">
                         <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Last updated: January 2025
+                            Laatst bijgewerkt: Januari 2025
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Van Appiah respects your privacy and is committed to protecting your personal data.
+                            Van Appiah respecteert je privacy. Wij verzamelen alleen gegevens die nodig zijn voor het leveren van onze diensten en gebruiken deze nooit zonder toestemming voor externe doeleinden.
                         </p>
                         <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            This privacy policy explains how we collect, use, and protect your information when you use our services.
+                            Gegevens die wij verzamelen worden veilig bewaard en niet gedeeld met derden, tenzij dit wettelijk verplicht is of noodzakelijk voor uitvoering van een dienst.
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 2rem;">
+                            Voor vragen over je privacy kun je altijd contact opnemen via vanappiah.com@gmail.com.
                         </p>
                         <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Contact Us</a>
+                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
                         </div>
                     </div>
                 </div>
@@ -1239,22 +1619,13 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-grid">
-                <!-- Column 1 - Brand -->
-                <div class="footer-column">
-                    <div class="footer-brand">
-                        <h3 class="footer-logo">Van Appiah</h3>
-                        <p class="footer-tagline">Creative & Digital Agency</p>
-                        <p class="footer-copyright">© 2025 Van Appiah</p>
-                    </div>
-                </div>
-
-                <!-- Column 2 - Contact -->
+                <!-- Column 1 - Contact -->
                 <div class="footer-column">
                     <h4 class="footer-title">Contact</h4>
                     <div class="footer-contact">
-                        <a href="mailto:info@vanappiah.com" class="footer-contact-item">
+                        <a href="mailto:vanappiah.com@gmail.com" class="footer-contact-item">
                             <span class="footer-icon">✉</span>
-                            <span>info@vanappiah.com</span>
+                            <span>vanappiah.com@gmail.com</span>
                         </a>
                         <a href="tel:+31657160395" class="footer-contact-item">
                             <span class="footer-icon">📞</span>
@@ -1268,57 +1639,157 @@
                             <span class="footer-icon">📍</span>
                             <span>Nederland</span>
                         </div>
+                        <a href="https://wa.me/31657160395" target="_blank" class="footer-whatsapp">
+                            <span>💬</span>
+                            WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <!-- Column 3 - Quick Links -->
+                <!-- Column 2 - Navigation -->
                 <div class="footer-column">
-                    <h4 class="footer-title">Snelkoppelingen</h4>
+                    <h4 class="footer-title">Navigatie</h4>
                     <nav class="footer-nav">
                         <a href="#" onclick="showPage('home')" class="footer-link">Home</a>
                         <a href="#" onclick="showPage('portfolio')" class="footer-link">Portfolio</a>
                         <a href="#" onclick="showPage('about')" class="footer-link">Over ons</a>
+                        <a href="#" onclick  class="footer-link">Over ons</a>
                         <a href="#" onclick="showPage('contact')" class="footer-link">Contact</a>
                     </nav>
                 </div>
 
-                <!-- Column 4 - Legal -->
+                <!-- Column 3 - Legal -->
                 <div class="footer-column">
                     <h4 class="footer-title">Juridisch</h4>
                     <nav class="footer-nav">
-                        <a href="#" onclick="showPage('terms')" class="footer-link" aria-label="View terms and conditions">Terms & Conditions</a>
-                        <a href="#" onclick="showPage('return')" class="footer-link" aria-label="View return policy">Return Policy</a>
-                        <a href="#" onclick="showPage('warranty')" class="footer-link" aria-label="View service and warranty information">Service & Warranty</a>
-                        <a href="#" onclick="showPage('privacy')" class="footer-link" aria-label="View privacy policy">Privacy Policy</a>
+                        <a href="#" onclick="showPage('terms')" class="footer-link">Terms & Conditions</a>
+                        <a href="#" onclick="showPage('return')" class="footer-link">Return Policy</a>
+                        <a href="#" onclick="showPage('warranty')" class="footer-link">Service & Warranty</a>
+                        <a href="#" onclick="showPage('privacy')" class="footer-link">Privacy Policy</a>
                     </nav>
                 </div>
+
+                <!-- Column 4 - Socials -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Socials</h4>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/van_appiah/" target="_blank" class="footer-social-link">
+                            <i data-lucide="instagram" class="footer-social-icon"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="footer-social-link">
+                            <i data-lucide="facebook" class="footer-social-icon"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://linkedin.com/company/vanappiah" target="_blank" class="footer-social-link">
+                            <i data-lucide="linkedin" class="footer-social-icon"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://x.com/vanappiah" target="_blank" class="footer-social-link">
+                            <i data-lucide="twitter" class="footer-social-icon"></i>
+                            <span>X (Twitter)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-brand">
+                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--background-white); margin: 0;">Van Appiah</h3>
+                    <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.8); margin: 0.5rem 0 0 0; font-weight: 400; line-height: 1.5;">Digitale oplossingen die bedrijven laten groeien</p>
+                </div>
+                <p style="margin-top: 1rem;">© 2025 Van Appiah. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle"></h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Modal content will be loaded here -->
-            </div>
-        </div>
-    </div>
 
     <script>
         // Application State
         const AppState = {
             currentPage: 'home',
             portfolioData: [],
-            loading: true
+            loading: true,
+            currentProject: null
         };
 
-        // Google Sheets CSV URL
+        // Google Sheets CSV URL - Updated to correct format
         const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaT1XO14T_dVasI4M1PhxS46v03dB-8DsUhU0-kzqmm6DJUn6z2Yy0m2NQyPpCHktMvNxhbIXa6tg/pub?output=csv';
+
+        // Sample JSON Data (simulating projects.json)
+        const SAMPLE_PROJECTS = [
+            {
+                "projectName": "Rafle L'Argent",
+                "shortDescription": "Luxe fashion webshop met minimalistisch design",
+                "category": "E-commerce",
+                "client": "Rafle L'argent",
+                "launchDate": "2024-11",
+                "status": "Completed",
+                "technologiesUsed": ["Next.js", "Stripe", "Tailwind CSS", "Vercel"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=Rafle+L'Argent",
+                "websiteUrl": "https://raflelargent.com",
+                "description": "Een minimalistische en luxueuze mode-ervaring met custom CMS en geautomatiseerde verzendoplossing. De webshop combineert elegante esthetiek met krachtige e-commerce functionaliteit."
+            },
+            {
+                "projectName": "TechStart Solutions",
+                "shortDescription": "Corporate website voor tech startup",
+                "category": "Showcase",
+                "client": "TechStart BV",
+                "launchDate": "2024-10",
+                "status": "Completed",
+                "technologiesUsed": ["React", "Node.js", "MongoDB", "AWS"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=TechStart+Solutions",
+                "websiteUrl": "https://techstart-solutions.com",
+                "description": "Een moderne corporate website die de innovatieve diensten van TechStart presenteert met interactieve elementen en geoptimaliseerde gebruikerservaring."
+            },
+            {
+                "projectName": "Green Energy Portal",
+                "shortDescription": "Duurzame energie platform met dashboard",
+                "category": "Web Design",
+                "client": "GreenTech Industries",
+                "launchDate": "2024-12",
+                "status": "Completed",
+                "technologiesUsed": ["Vue.js", "Python", "PostgreSQL", "Docker"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=Green+Energy+Portal",
+                "websiteUrl": "https://greenenergy-portal.com",
+                "description": "Een uitgebreid platform voor het monitoren en beheren van duurzame energie projecten met real-time data visualisatie en gebruiksvriendelijke dashboards."
+            },
+            {
+                "projectName": "Artisan Marketplace",
+                "shortDescription": "Online marktplaats voor ambachtelijke producten",
+                "category": "E-commerce",
+                "client": "Artisan Collective",
+                "launchDate": "2024-09",
+                "status": "Completed",
+                "technologiesUsed": ["Shopify", "React", "GraphQL", "Stripe"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=Artisan+Marketplace",
+                "websiteUrl": "https://artisan-marketplace.com",
+                "description": "Een unieke marktplaats die ambachtslieden verbindt met klanten wereldwijd, met geavanceerde zoekfunctionaliteit en geïntegreerde betalingssystemen."
+            },
+            {
+                "projectName": "HealthCare Connect",
+                "shortDescription": "Patiënt-arts communicatie platform",
+                "category": "Web Design",
+                "client": "MedTech Solutions",
+                "launchDate": "2025-01",
+                "status": "In Development",
+                "technologiesUsed": ["React Native", "Node.js", "MongoDB", "Socket.io"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=HealthCare+Connect",
+                "websiteUrl": "",
+                "description": "Een veilig communicatieplatform dat patiënten en zorgverleners verbindt met real-time messaging, afspraakplanning en medische dossier toegang."
+            },
+            {
+                "projectName": "Creative Studio Portfolio",
+                "shortDescription": "Interactieve portfolio voor creatief bureau",
+                "category": "Showcase",
+                "client": "Creative Minds Studio",
+                "launchDate": "2024-08",
+                "status": "Completed",
+                "technologiesUsed": ["Three.js", "GSAP", "Nuxt.js", "Contentful"],
+                "imageUrl": "/placeholder.svg?height=300&width=400&text=Creative+Studio",
+                "websiteUrl": "https://creativeminds-studio.com",
+                "description": "Een visueel indrukwekkende portfolio website met 3D animaties en interactieve elementen die de creativiteit van het bureau perfect weergeeft."
+            }
+        ];
 
         // Utility Functions
         function createImageElement(src, alt, fallback = '🌐') {
@@ -1328,16 +1799,37 @@
             return `<img src="${src}" alt="${alt}" onerror="this.parentElement.innerHTML='<div style=&quot;font-size: 4rem; color: var(--lighter-grey); display: flex; align-items: center; justify-content: center; height: 100%;&quot;>${fallback}</div>'" loading="lazy">`;
         }
 
-        function getStatusClass(status) {
-            if (!status) return 'status-completed';
+        function getStatusInfo(status, websiteUrl) {
+            const hasValidUrl = hasValidWebsiteUrl(websiteUrl);
+            
+            if (!status || status.toLowerCase() === 'completed') {
+                return hasValidUrl ? 
+                    { class: 'status-completed', text: 'Live', showButton: true } :
+                    { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+            }
+            
             const statusLower = status.toLowerCase();
-            if (statusLower.includes('completed') || statusLower.includes('complete')) return 'status-completed';
-            if (statusLower.includes('progress') || statusLower.includes('development')) return 'status-in-progress';
-            return 'status-planned';
+            
+            if (statusLower.includes('development') || statusLower.includes('progress')) {
+                return { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+            }
+            
+            return hasValidUrl ? 
+                { class: 'status-completed', text: 'Live', showButton: true } :
+                { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+        }
+
+        function getCategoryClass(category) {
+            if (!category) return 'category-showcase';
+            const categoryLower = category.toLowerCase();
+            if (categoryLower.includes('ecommerce') || categoryLower.includes('e-commerce')) return 'category-ecommerce';
+            if (categoryLower.includes('webdesign') || categoryLower.includes('web design')) return 'category-webdesign';
+            return 'category-showcase';
         }
 
         function formatTechnologies(tech) {
             if (!tech) return [];
+            if (Array.isArray(tech)) return tech;
             return tech.split(',').map(t => t.trim()).filter(t => t.length > 0);
         }
 
@@ -1356,10 +1848,24 @@
             }, 16);
         }
 
+        function hasValidWebsiteUrl(url) {
+            if (!url || url.trim() === '') return false;
+            const trimmedUrl = url.trim().toLowerCase();
+            return trimmedUrl.startsWith('http://') || trimmedUrl.startsWith('https://') || trimmedUrl.startsWith('www.');
+        }
+
+        function createProjectSlug(projectName) {
+            return projectName
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
         // Data Loading Functions
         async function loadPortfolioData() {
             try {
                 console.log('Loading portfolio data from Google Sheets...');
+                console.log('Sheet URL:', SHEETS_CSV_URL);
                 
                 const response = await fetch(SHEETS_CSV_URL);
                 if (!response.ok) {
@@ -1367,29 +1873,60 @@
                 }
                 
                 const csvText = await response.text();
-                console.log('CSV data received, parsing...');
+                console.log('Raw CSV data received:', csvText.substring(0, 500) + '...');
                 
                 return new Promise((resolve, reject) => {
                     Papa.parse(csvText, {
                         header: true,
                         skipEmptyLines: true,
                         transformHeader: (header) => {
-                            // Clean up header names
+                            // Clean up header names to match our expected format
                             return header.trim();
                         },
+                        transform: (value, header) => {
+                            // Clean up cell values
+                            return value ? value.trim() : '';
+                        },
                         complete: (results) => {
+                            console.log('CSV parsing complete. Errors:', results.errors);
+                            console.log('Raw parsed data:', results.data);
+                            
                             if (results.errors.length > 0) {
                                 console.warn('CSV parsing warnings:', results.errors);
                             }
                             
-                            // Filter out empty rows and validate data
-                            const validData = results.data.filter(row => {
-                                return row && Object.keys(row).length > 1 && 
-                                       (row['Project Name'] || row['Project NameShort Description'] || row['Naam']);
-                            });
+                            // Filter out empty rows and normalize data
+                            const validData = results.data
+                                .filter(row => {
+                                    // Check if row has essential data
+                                    const hasProjectName = row['Project Name'] && row['Project Name'].trim() !== '';
+                                    const hasDescription = row['Short Description'] && row['Short Description'].trim() !== '';
+                                    return hasProjectName || hasDescription;
+                                })
+                                .map(row => {
+                                    // Normalize the data structure
+                                    return {
+                                        projectName: row['Project Name'] || 'Untitled Project',
+                                        shortDescription: row['Short Description'] || 'No description available',
+                                        category: row['Category'] || 'Web Development',
+                                        client: row['Client'] || '',
+                                        launchDate: row['Launch Date'] || '',
+                                        status: row['Status'] || 'Completed',
+                                        technologiesUsed: row['Technologies Used'] || '',
+                                        imageUrl: row['Image URL'] || '',
+                                        websiteUrl: row['Website URL'] || '',
+                                        description: row['Description'] || row['Short Description'] || 'No detailed description available.'
+                                    };
+                                });
                             
-                            console.log('Portfolio data loaded successfully:', validData);
-                            resolve(validData);
+                            console.log(`Portfolio data processed successfully. Found ${validData.length} projects:`, validData);
+                            
+                            if (validData.length === 0) {
+                                console.warn('No valid projects found in the data. Using fallback data.');
+                                resolve(SAMPLE_PROJECTS);
+                            } else {
+                                resolve(validData);
+                            }
                         },
                         error: (error) => {
                             console.error('CSV parsing error:', error);
@@ -1400,64 +1937,268 @@
                 
             } catch (error) {
                 console.error('Error loading portfolio data:', error);
-                throw error;
+                console.log('Falling back to sample data');
+                return SAMPLE_PROJECTS;
             }
         }
 
         // Rendering Functions
+        function renderMiniPortfolio() {
+            const grid = document.getElementById('miniPortfolioGrid');
+            if (!grid) return;
+
+            console.log('Rendering mini portfolio with', AppState.portfolioData.length, 'total projects');
+
+            // Filter completed projects and limit to 6
+            const completedProjects = AppState.portfolioData
+                .filter(project => {
+                    const status = project.status || 'Completed';
+                    const isCompleted = status.toLowerCase().includes('completed') || 
+                                      status.toLowerCase().includes('live') || 
+                                      status.toLowerCase() === 'completed';
+                    console.log(`Project "${project.projectName}" status: "${status}", isCompleted: ${isCompleted}`);
+                    return isCompleted;
+                })
+                .slice(0, 6);
+
+            console.log('Filtered completed projects for mini portfolio:', completedProjects.length);
+
+            if (completedProjects.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Geen voltooide projecten gevonden</h3>
+                        <p style="color: var(--lighter-grey);">Portfolio data: ${AppState.portfolioData.length} projecten geladen</p>
+                        <button onclick="console.log('All projects:', AppState.portfolioData)" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent-blue); color: white; border: none; border-radius: 4px;">Debug: Log All Projects</button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = completedProjects.map((project, index) => {
+                const statusInfo = getStatusInfo(project.status, project.websiteUrl);
+                const categoryClass = getCategoryClass(project.category);
+                
+                // Create short description (max 12 words for mini cards)
+                const words = project.shortDescription.split(' ');
+                const shortDescription = words.length > 12 ? words.slice(0, 12).join(' ') + '...' : words.join(' ');
+                
+                return `
+                    <div class="mini-portfolio-card animate-on-scroll" onclick="openProjectDetail(${AppState.portfolioData.indexOf(project)})" style="animation-delay: ${index * 0.1}s">
+                        <div class="mini-portfolio-image">
+                            ${createImageElement(project.imageUrl, project.projectName, '🌐')}
+                        </div>
+                        <div class="mini-portfolio-content">
+                            <div class="mini-portfolio-badges">
+                                <div class="mini-portfolio-category ${categoryClass}">${project.category}</div>
+                                <div class="status-badge ${statusInfo.class}">${statusInfo.text}</div>
+                            </div>
+                            <h3 class="mini-portfolio-title">${project.projectName}</h3>
+                            <p class="mini-portfolio-description">${shortDescription}</p>
+                            <div class="mini-portfolio-meta">
+                                <span class="mini-portfolio-client">${project.client ? `voor ${project.client}` : 'Van Appiah'}</span>
+                                <span style="font-size: 0.8rem; color: var(--lighter-grey);">${project.launchDate}</span>
+                            </div>
+                            <div class="portfolio-actions">
+                                ${statusInfo.showButton ? `
+                                    <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
+                                        <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                                        View Website
+                                    </a>
+                                ` : `
+                                    <span class="portfolio-btn portfolio-btn-secondary">
+                                        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                                        Coming Soon
+                                    </span>
+                                `}
+                                <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${AppState.portfolioData.indexOf(project)})">
+                                    <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                                    Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Re-initialize Lucide icons for new content
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
         function renderPortfolio() {
             const grid = document.getElementById('portfolioGrid');
             if (!grid) return;
 
+            console.log('Rendering full portfolio with', AppState.portfolioData.length, 'projects');
+
             if (AppState.portfolioData.length === 0) {
                 grid.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">No projects found</h3>
-                        <p style="color: var(--lighter-grey);">Portfolio data is currently being loaded...</p>
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Geen projecten gevonden</h3>
+                        <p style="color: var(--lighter-grey);">Portfolio data wordt momenteel geladen...</p>
                     </div>
                 `;
                 return;
             }
 
             grid.innerHTML = AppState.portfolioData.map((project, index) => {
-                // Handle different possible column names from the sheet
-                const projectName = project['Project Name'] || project['Naam'] || `Project ${index + 1}`;
-                const shortDesc = project['Short Description'] || project['Korte Beschrijving'] || '';
-                const category = project['Category'] || project['Categorie'] || 'Web Development';
-                const client = project['Client'] || project['Klant'] || '';
-                const status = project['Status'] || 'Completed';
-                const imageUrl = project['Image URL'] || project['Afbeelding URL'] || '';
-                const description = project['Description'] || project['Beschrijving'] || shortDesc;
+                const statusInfo = getStatusInfo(project.status, project.websiteUrl);
+                const categoryClass = getCategoryClass(project.category);
+                
+                // Create short description (max 15 words)
+                const words = project.shortDescription.split(' ');
+                const shortDescription = words.length > 15 ? words.slice(0, 15).join(' ') + '...' : words.join(' ');
                 
                 return `
-                    <div class="portfolio-card" onclick="openProjectModal(${index})">
+                    <div class="portfolio-card" onclick="openProjectDetail(${index})" style="animation-delay: ${index * 0.1}s">
                         <div class="portfolio-image">
-                            ${createImageElement(imageUrl, projectName, '🌐')}
+                            ${createImageElement(project.imageUrl, project.projectName, '🌐')}
                         </div>
                         <div class="portfolio-content">
-                            <div class="portfolio-category">${category}</div>
-                            <h3 class="portfolio-title">${projectName}</h3>
-                            <p class="portfolio-description">${shortDesc || description.substring(0, 120) + (description.length > 120 ? '...' : '')}</p>
+                            <div class="portfolio-badges">
+                                <div class="portfolio-category ${categoryClass}">${project.category}</div>
+                                <div class="status-badge ${statusInfo.class}">${statusInfo.text}</div>
+                            </div>
+                            <h3 class="portfolio-title">${project.projectName}</h3>
+                            <p class="portfolio-description">${shortDescription}</p>
                             <div class="portfolio-meta">
-                                <span class="portfolio-client">${client || 'Van Appiah'}</span>
-                                <span class="portfolio-status ${getStatusClass(status)}">${status}</span>
+                                <span class="portfolio-client">${project.client ? `voor ${project.client}` : 'Van Appiah'}</span>
+                                <span style="font-size: 0.8rem; color: var(--lighter-grey);">${project.launchDate}</span>
+                            </div>
+                            <div class="portfolio-actions">
+                                ${statusInfo.showButton ? `
+                                    <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
+                                        <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                                        View Website
+                                    </a>
+                                ` : `
+                                    <span class="portfolio-btn portfolio-btn-secondary">
+                                        <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                                        Coming Soon
+                                    </span>
+                                `}
+                                <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${index})">
+                                    <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                                    Details
+                                </button>
                             </div>
                         </div>
                     </div>
                 `;
             }).join('');
+
+            // Re-initialize Lucide icons for new content
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function renderProjectDetail(project) {
+            const container = document.getElementById('projectDetailContent');
+            if (!container) return;
+
+            const statusInfo = getStatusInfo(project.status, project.websiteUrl);
+            const categoryClass = getCategoryClass(project.category);
+            const technologies = formatTechnologies(project.technologiesUsed);
+
+            container.innerHTML = `
+                <a href="#" class="project-back-btn" onclick="showPage('portfolio')">
+                    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                    Terug naar Portfolio
+                </a>
+                
+                <div class="project-header">
+                    <h1 class="project-title">${project.projectName}</h1>
+                    <p class="project-subtitle">${project.shortDescription}</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
+                        <div class="portfolio-category ${categoryClass}">${project.category}</div>
+                        <div class="status-badge ${statusInfo.class}">${statusInfo.text}</div>
+                    </div>
+                </div>
+
+                <div class="project-image">
+                    ${createImageElement(project.imageUrl, project.projectName, '🌐')}
+                </div>
+
+                <div class="project-info">
+                    <div class="project-description">
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-dark);">Over dit project</h3>
+                        <p>${project.description}</p>
+                        
+                        ${statusInfo.showButton ? `
+                            <a href="${project.websiteUrl}" target="_blank" class="project-website-btn">
+                                <i data-lucide="external-link" style="width: 20px; height: 20px;"></i>
+                                Bezoek Website
+                            </a>
+                        ` : `
+                            <div class="project-website-btn disabled">
+                                <i data-lucide="clock" style="width: 20px; height: 20px;"></i>
+                                Binnenkort beschikbaar
+                            </div>
+                        `}
+                    </div>
+
+                    <div class="project-sidebar">
+                        <h4 style="font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--primary-dark);">Project Details</h4>
+                        
+                        ${project.client ? `
+                            <div class="project-detail-item">
+                                <div class="project-detail-label">Klant</div>
+                                <div class="project-detail-value">${project.client}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${project.launchDate ? `
+                            <div class="project-detail-item">
+                                <div class="project-detail-label">Lanceerdatum</div>
+                                <div class="project-detail-value">${project.launchDate}</div>
+                            </div>
+                        ` : ''}
+                        
+                        <div class="project-detail-item">
+                            <div class="project-detail-label">Status</div>
+                            <div class="project-detail-value">
+                                <div class="status-badge ${statusInfo.class}">${statusInfo.text}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-detail-item">
+                            <div class="project-detail-label">Categorie</div>
+                            <div class="project-detail-value">${project.category}</div>
+                        </div>
+                        
+                        ${technologies.length > 0 ? `
+                            <div class="project-detail-item">
+                                <div class="project-detail-label">Technologieën</div>
+                                <div class="project-detail-value">
+                                    <div class="project-tech-tags">
+                                        ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            // Re-initialize Lucide icons for new content
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function updateStats() {
             const projectCount = AppState.portfolioData.length;
-            const clientCount = new Set(AppState.portfolioData.map(p => p['Client'] || p['Klant']).filter(c => c)).size;
+            const clientCount = new Set(AppState.portfolioData.map(p => p.client).filter(c => c)).size;
             const techCount = new Set(
                 AppState.portfolioData
-                    .flatMap(p => formatTechnologies(p['Technologies Used'] || p['Technologieën']))
+                    .flatMap(p => formatTechnologies(p.technologiesUsed))
                     .filter(t => t)
             ).size;
 
-            // Animate the numbers
+            console.log('Stats update:', { projectCount, clientCount, techCount });
+
             setTimeout(() => {
                 const projectElement = document.getElementById('projectCount');
                 const clientElement = document.getElementById('clientCount');
@@ -1469,104 +2210,39 @@
             }, 500);
         }
 
-        // Modal Functions
-        function openProjectModal(index) {
-            const project = AppState.portfolioData[index];
-            if (!project) return;
-
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
-
-            const projectName = project['Project Name'] || project['Naam'] || 'Project';
-            const description = project['Description'] || project['Beschrijving'] || '';
-            const category = project['Category'] || project['Categorie'] || 'Web Development';
-            const client = project['Client'] || project['Klant'] || '';
-            const launchDate = project['Launch Date'] || project['Lanceerdatum'] || '';
-            const status = project['Status'] || 'Completed';
-            const technologies = formatTechnologies(project['Technologies Used'] || project['Technologieën'] || '');
-            const imageUrl = project['Image URL'] || project['Afbeelding URL'] || '';
-            const websiteUrl = project['Website URL'] || project['Website'] || '';
-
-            modalTitle.textContent = projectName;
-
-            modalBody.innerHTML = `
-                <div class="modal-image">
-                    ${createImageElement(imageUrl, projectName, '🌐')}
-                </div>
-                <div class="modal-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Category:</span>
-                        <span class="detail-value">${category}</span>
-                    </div>
-                    ${client ? `
-                        <div class="detail-row">
-                            <span class="detail-label">Client:</span>
-                            <span class="detail-value">${client}</span>
-                        </div>
-                    ` : ''}
-                    ${launchDate ? `
-                        <div class="detail-row">
-                            <span class="detail-label">Launch Date:</span>
-                            <span class="detail-value">${launchDate}</span>
-                        </div>
-                    ` : ''}
-                    <div class="detail-row">
-                        <span class="detail-label">Status:</span>
-                        <span class="detail-value">
-                            <span class="portfolio-status ${getStatusClass(status)}">${status}</span>
-                        </span>
-                    </div>
-                    ${technologies.length > 0 ? `
-                        <div class="detail-row">
-                            <span class="detail-label">Technologies:</span>
-                            <div class="detail-value">
-                                <div class="tech-tags">
-                                    ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    ` : ''}
-                    ${websiteUrl ? `
-                        <div class="detail-row">
-                            <span class="detail-label">Website:</span>
-                            <span class="detail-value">
-                                <a href="${websiteUrl}" target="_blank" class="website-link">
-                                    Visit Website →
-                                </a>
-                            </span>
-                        </div>
-                    ` : ''}
-                    ${description ? `
-                        <div class="detail-row">
-                            <span class="detail-label">Description:</span>
-                            <span class="detail-value">${description}</span>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-
-            document.getElementById('modal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            const projectSlug = urlParams.get('project');
+            
+            if (projectSlug && AppState.portfolioData.length > 0) {
+                const projectIndex = AppState.portfolioData.findIndex(project => {
+                    return createProjectSlug(project.projectName) === projectSlug;
+                });
+                
+                if (projectIndex !== -1) {
+                    openProjectDetail(projectIndex);
+                    return;
+                }
+            }
+            
+            if (page && ['home', 'portfolio', 'about', 'contact', 'terms', 'return', 'warranty', 'privacy'].includes(page)) {
+                showPage(page);
+            }
         }
 
         // Navigation Functions
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
 
-            // Show selected page
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
                 AppState.currentPage = pageId;
             }
 
-            // Update navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
@@ -1576,12 +2252,19 @@
                 activeLink.classList.add('active');
             }
 
-            // Close mobile menu
             document.getElementById('navLinks').classList.remove('active');
 
-            // Update URL without page reload
+            // Scroll to top when changing pages
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
             const url = new URL(window.location);
-            url.searchParams.set('page', pageId);
+            if (pageId === 'project-detail' && AppState.currentProject) {
+                const slug = createProjectSlug(AppState.currentProject.projectName);
+                url.searchParams.set('project', slug);
+            } else {
+                url.searchParams.delete('project');
+                url.searchParams.set('page', pageId);
+            }
             window.history.pushState({ page: pageId }, '', url);
         }
 
@@ -1596,25 +2279,23 @@
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
             
-            // Create mailto link
             const subject = encodeURIComponent(`Van Appiah Contact: ${data.subject}`);
             const body = encodeURIComponent(`
-Name: ${data.name}
+Naam: ${data.name}
 Email: ${data.email}
 
-Message:
+Bericht:
 ${data.message}
 
 ---
-Sent from Van Appiah website contact form
+Verzonden via Van Appiah website contactformulier
             `);
             
-            const mailtoLink = `mailto:info@vanappiah.com?subject=${subject}&body=${body}`;
+            const mailtoLink = `mailto:vanappiah.com@gmail.com?subject=${subject}&body=${body}`;
             window.location.href = mailtoLink;
             
-            // Reset form
             event.target.reset();
-            alert('Thank you for your message! Your email client will open to send the message.');
+            alert('Bedankt voor je bericht! Je email client opent om het bericht te verzenden.');
         }
 
         // Scroll Effects
@@ -1630,22 +2311,34 @@ Sent from Van Appiah website contact form
             });
         }
 
-        // URL Parameter Handling
-        function handleURLParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page');
-            
-            if (page && ['home', 'portfolio', 'about', 'contact', 'terms', 'return', 'warranty', 'privacy'].includes(page)) {
-                showPage(page);
-            }
+        // Intersection Observer for Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
         }
+
+        // URL Parameter Handling
 
         // Loading Screen
         function hideLoadingScreen() {
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hidden');
                 AppState.loading = false;
-            }, 2000);
+            }, 1500);
         }
 
         // Initialize Application
@@ -1653,70 +2346,41 @@ Sent from Van Appiah website contact form
             console.log('Initializing Van Appiah portfolio website...');
             
             try {
-                // Show loading screen
                 hideLoadingScreen();
                 
-                // Load portfolio data
                 AppState.portfolioData = await loadPortfolioData();
                 
-                // Render content
+                renderMiniPortfolio();
                 renderPortfolio();
                 updateStats();
                 
-                // Initialize features
                 initScrollEffects();
+                initScrollAnimations();
                 handleURLParameters();
+
+                // Initialize Lucide icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
                 
                 console.log('Application initialized successfully');
                 
             } catch (error) {
                 console.error('Failed to load portfolio data:', error);
                 
-                // Load fallback data
-                AppState.portfolioData = [
-                    {
-                        'Project Name': 'Van Appiah Corporate Site',
-                        'Short Description': 'Corporate showcase platform',
-                        'Category': 'Showcase',
-                        'Client': 'Van Appiah',
-                        'Status': 'Completed',
-                        'Technologies Used': 'HTML, CSS, JavaScript',
-                        'Website URL': 'https://vanappiah.com',
-                        'Description': 'A modern corporate website showcasing digital solutions and services.'
-                    },
-                    {
-                        'Project Name': 'E-commerce Platform',
-                        'Short Description': 'Custom online store solution',
-                        'Category': 'E-commerce',
-                        'Client': 'Client Name',
-                        'Status': 'Completed',
-                        'Technologies Used': 'React, Node.js, MongoDB',
-                        'Description': 'Full-featured e-commerce platform with payment integration and inventory management.'
-                    }
-                ];
+                // Use sample data as fallback
+                AppState.portfolioData = SAMPLE_PROJECTS;
                 
+                renderMiniPortfolio();
                 renderPortfolio();
                 updateStats();
             }
             
-            // Handle browser back/forward
             window.addEventListener('popstate', (event) => {
                 if (event.state && event.state.page) {
                     showPage(event.state.page);
-                }
-            });
-            
-            // Close modal on outside click
-            document.getElementById('modal').addEventListener('click', (e) => {
-                if (e.target.id === 'modal') {
-                    closeModal();
-                }
-            });
-            
-            // Close modal on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
+                } else {
+                    handleURLParameters();
                 }
             });
         }
@@ -1729,7 +2393,6 @@ Sent from Van Appiah website contact form
             console.error('Application error:', e.error);
         });
 
-        // Handle unhandled promise rejections
         window.addEventListener('unhandledrejection', (e) => {
             console.error('Unhandled promise rejection:', e.reason);
             e.preventDefault();
