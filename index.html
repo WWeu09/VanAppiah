@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Van Appiah - Digital Solutions & Portfolio</title>
-    <meta name="description" content="Van Appiah ontwikkelt op maat gemaakte websites, webshops en strategieën die bedrijven online laten groeien.">
+    <meta name="description" content="Wij bouwen digitale ervaringen die bedrijven laten groeien. Webdesign, branding & slimme systemen voor jouw succes.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,10 @@
 
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <style>
         /* CSS Variables */
@@ -33,6 +37,7 @@
             --accent-orange: #f59e0b;
             --accent-purple: #8b5cf6;
             --accent-red: #ef4444;
+            --accent-beige: #f5f1eb;
             --text-primary: #111827;
             --text-secondary: #6b7280;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -216,36 +221,62 @@
             padding: 0.5rem;
             min-height: 48px;
             min-width: 48px;
+            border-radius: var(--border-radius-xs);
+            transition: var(--transition);
         }
 
-        /* Floating Contact Button */
-        .floating-contact {
+        .mobile-menu-btn:hover {
+            background: var(--background-light);
+        }
+
+        /* Mobile CTA Bar */
+        .mobile-cta-bar {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--background-white);
+            border-top: 1px solid var(--border-light);
+            padding: 1rem;
+            display: none;
             z-index: 999;
+            box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .mobile-cta-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        .mobile-cta-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.75rem 0.5rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: var(--border-radius-xs);
+            transition: var(--transition);
+            min-height: 60px;
+        }
+
+        .mobile-cta-btn:hover {
+            background: var(--background-light);
+            color: var(--primary-dark);
+        }
+
+        .mobile-cta-btn.primary {
             background: var(--accent-blue);
             color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-xl);
-            transition: var(--transition);
-            text-decoration: none;
-            animation: pulse 2s infinite;
         }
 
-        .floating-contact:hover {
+        .mobile-cta-btn.primary:hover {
             background: var(--primary-dark);
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         /* Page Container */
@@ -263,9 +294,9 @@
             display: block;
         }
 
-        /* Hero Section */
+        /* Hero Section - Improved */
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -284,7 +315,7 @@
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             font-weight: 700;
             color: var(--primary-dark);
             margin-bottom: 1.5rem;
@@ -293,23 +324,14 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            color: var(--accent-blue);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .hero-description {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
             color: var(--text-secondary);
             margin-bottom: 3rem;
-            max-width: 700px;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.6s both;
-            font-weight: 500;
         }
 
         .hero-buttons {
@@ -317,10 +339,11 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.8s both;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            margin-bottom: 4rem;
         }
 
-        /* Scroll Indicator */
+        /* Scroll Indicator - Mobile Optimized */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -331,24 +354,31 @@
             align-items: center;
             gap: 0.5rem;
             color: var(--text-secondary);
-            animation: fadeInUp 1s ease-out 1s both;
+            animation: fadeInUp 1s ease-out 0.8s both;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .scroll-indicator:hover {
+            color: var(--accent-blue);
         }
 
         .scroll-indicator span {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
+            text-align: center;
         }
 
         .scroll-arrow {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
         }
 
         .btn {
@@ -363,10 +393,11 @@
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            min-width: 160px;
+            min-width: 180px;
             min-height: 48px;
             position: relative;
             overflow: hidden;
+            gap: 0.5rem;
         }
 
         .btn::before {
@@ -385,9 +416,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-dark) 100%);
             color: var(--background-white);
-            border: 2px solid var(--primary-dark);
+            border: 2px solid var(--accent-blue);
             box-shadow: var(--shadow-md);
         }
 
@@ -407,6 +438,65 @@
             color: var(--background-white);
             transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
+        }
+
+        /* Solutions Section */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: var(--background-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-blue);
+        }
+
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .solution-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .solution-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-link {
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .solution-link:hover {
+            color: var(--primary-dark);
         }
 
         /* Section Styles */
@@ -467,7 +557,6 @@
             transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--border-light);
-            animation: fadeInUp 0.6s ease-out;
             position: relative;
         }
 
@@ -550,6 +639,11 @@
             letter-spacing: 0.5px;
         }
 
+        .status-live {
+            background: var(--accent-green);
+            color: white;
+        }
+
         .status-completed {
             background: var(--accent-green);
             color: white;
@@ -605,7 +699,7 @@
             font-weight: 600;
             font-size: 0.85rem;
             transition: var(--transition);
-            min-height: 36px;
+            min-height: 44px;
         }
 
         .portfolio-btn-primary {
@@ -819,6 +913,17 @@
             min-height: 120px;
         }
 
+        .form-success {
+            background: var(--accent-green);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
         /* Stats Section */
         .stats-grid {
             display: grid;
@@ -849,6 +954,41 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.85rem;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--background-white);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--background-light);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
         }
 
         /* Modern Social Icons */
@@ -1103,18 +1243,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Intersection Observer Animation */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Responsive Design - Mobile First */
         @media (max-width: 768px) {
             .nav-links {
@@ -1139,6 +1267,19 @@
                 display: block;
             }
 
+            .mobile-cta-bar {
+                display: block;
+            }
+
+            .page-container {
+                padding-bottom: 80px;
+            }
+
+            .hero {
+                min-height: 90vh;
+                padding: 1rem;
+            }
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -1148,6 +1289,19 @@
             .btn {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .scroll-indicator {
+                bottom: 1rem;
+            }
+
+            .scroll-indicator span {
+                font-size: 0.75rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .portfolio-grid {
@@ -1195,13 +1349,6 @@
                 padding: 3rem 0;
             }
 
-            .floating-contact {
-                bottom: 1rem;
-                right: 1rem;
-                width: 50px;
-                height: 50px;
-            }
-
             .project-back-btn {
                 position: sticky;
                 top: 100px;
@@ -1225,8 +1372,8 @@
             }
 
             .hero {
-                min-height: 80vh;
-                padding: 1rem;
+                min-height: 85vh;
+                padding: 1rem 0.5rem;
             }
 
             .project-detail {
@@ -1235,6 +1382,15 @@
 
             .project-sidebar {
                 padding: 1.5rem;
+            }
+
+            .mobile-cta-buttons {
+                gap: 0.25rem;
+            }
+
+            .mobile-cta-btn {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.25rem;
             }
         }
 
@@ -1264,6 +1420,19 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .scroll-arrow {
+                animation: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1284,14 +1453,33 @@
                 <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">Over ons</a></li>
                 <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Floating Contact Button -->
-    <a href="#" onclick="showPage('contact')" class="floating-contact" aria-label="Contact opnemen">
-        <i data-lucide="phone" style="width: 24px; height: 24px;"></i>
-    </a>
+    <!-- Mobile CTA Bar -->
+    <div class="mobile-cta-bar" id="mobileCTABar">
+        <div class="mobile-cta-buttons">
+            <a href="tel:+31657160395" class="mobile-cta-btn">
+                <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                <span>Bellen</span>
+            </a>
+            <a href="https://wa.me/31657160395" target="_blank" class="mobile-cta-btn">
+                <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:vanappiah.com@gmail.com" class="mobile-cta-btn">
+                <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
+                <span>Mailen</span>
+            </a>
+            <a href="#" onclick="showPage('contact')" class="mobile-cta-btn primary">
+                <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                <span>Afspraak</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Page Container -->
     <div class="page-container">
@@ -1299,79 +1487,124 @@
         <div class="page active" id="home">
             <section class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">Digitale oplossingen met impact.</h1>
-                    <p class="hero-subtitle">Van Appiah helpt merken groeien met moderne websites, branding en slimme systemen.</p>
-                    <p class="hero-description">
-                        Wij bouwen websites, merken & digitale ervaringen die echt werken. Van showcase-sites tot complete e-commerce platforms - alles op maat gemaakt voor jouw succes.
-                    </p>
+                    <h1 class="hero-title">Wij bouwen digitale ervaringen die bedrijven laten groeien</h1>
+                    <p class="hero-subtitle">Webdesign, branding & slimme systemen voor jouw succes</p>
                     <div class="hero-buttons">
-                        <a href="#portfolio" class="btn btn-primary" onclick="document.getElementById('portfolio-section').scrollIntoView({behavior: 'smooth'})">Bekijk ons werk</a>
-                        <a href="#" class="btn btn-outline" onclick="showPage('contact')">Start je project</a>
+                        <a href="#" class="btn btn-primary" onclick="showPage('portfolio')">
+                            <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
+                            Bekijk ons werk
+                        </a>
+                        <a href="#" class="btn btn-outline" onclick="showPage('contact')">
+                            <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                            Plan gratis kennismaking
+                        </a>
                     </div>
                 </div>
-                <div class="scroll-indicator">
+                <div class="scroll-indicator" onclick="document.getElementById('solutions-section').scrollIntoView({behavior: 'smooth'})">
                     <span>Scroll om meer te ontdekken</span>
                     <i data-lucide="chevron-down" class="scroll-arrow"></i>
                 </div>
             </section>
 
-            <!-- Portfolio Section -->
-            <section class="section animate-on-scroll" id="portfolio-section">
+            <!-- Solutions Section -->
+            <section class="section" id="solutions-section" data-aos="fade-up">
                 <div class="container">
-                    <h2 class="section-title">Recent Work</h2>
+                    <h2 class="section-title">Onze Oplossingen</h2>
                     <p class="section-subtitle">
-                        Een selectie van onze nieuwste projecten - van luxe e-commerce tot moderne showcase sites
+                        Van concept tot lancering - wij helpen jouw bedrijf digitaal groeien
+                    </p>
+                    <div class="solutions-grid">
+                        <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+                            <span class="solution-icon">🧠</span>
+                            <h3 class="solution-title">Merkstrategie</h3>
+                            <p class="solution-description">
+                                Een sterke merkidentiteit die jouw bedrijf onderscheidt en vertrouwen wekt bij klanten.
+                            </p>
+                            <a href="#" class="solution-link" onclick="showPage('contact')">
+                                Meer weten <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </div>
+                        <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
+                            <span class="solution-icon">🌐</span>
+                            <h3 class="solution-title">Website Ontwikkeling</h3>
+                            <p class="solution-description">
+                                Op maat gemaakte websites die converteren en een perfecte gebruikerservaring bieden.
+                            </p>
+                            <a href="#" class="solution-link" onclick="showPage('portfolio')">
+                                Voorbeelden bekijken <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </div>
+                        <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
+                            <span class="solution-icon">🛒</span>
+                            <h3 class="solution-title">E-commerce Oplossingen</h3>
+                            <p class="solution-description">
+                                Krachtige webshops die verkopen stimuleren en je bedrijf online laten groeien.
+                            </p>
+                            <a href="#" class="solution-link" onclick="showPage('contact')">
+                                Project starten <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="section section-alt" id="portfolio-section" data-aos="fade-up">
+                <div class="container">
+                    <h2 class="section-title">Uitgelichte Projecten</h2>
+                    <p class="section-subtitle">
+                        Een selectie van onze nieuwste projecten met resultaten die spreken
                     </p>
                     <div class="mini-portfolio-grid" id="miniPortfolioGrid">
                         <!-- Mini portfolio items will be loaded here -->
                         <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
                         <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
                         <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
                     </div>
                     <div style="text-align: center; margin-top: 3rem;">
-                        <a href="#" class="btn btn-outline" onclick="showPage('portfolio')">Bekijk alle projecten</a>
+                        <a href="#" class="btn btn-outline" onclick="showPage('portfolio')">
+                            <i data-lucide="grid-3x3" style="width: 20px; height: 20px;"></i>
+                            Bekijk alle projecten
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="section" data-aos="fade-up">
+                <div class="container">
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="stat-number" id="projectCount">0</div>
+                            <div class="stat-label">Projecten Afgerond</div>
+                        </div>
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="stat-number" id="clientCount">0</div>
+                            <div class="stat-label">Tevreden Klanten</div>
+                        </div>
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="stat-number" id="techCount">0</div>
+                            <div class="stat-label">Technologieën</div>
+                        </div>
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Tevredenheid</div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- CTA Section -->
-            <section class="cta-section animate-on-scroll">
+            <section class="cta-section" data-aos="fade-up">
                 <div class="container">
-                    <h2 class="cta-title">Benieuwd wat we voor jou kunnen betekenen?</h2>
+                    <h2 class="cta-title">Laat ons jouw project bouwen</h2>
                     <p class="cta-description">
-                        Laten we samen kijken hoe we jouw digitale ambities kunnen realiseren
+                        Plan nu een gratis gesprek en ontdek hoe we jouw digitale ambities kunnen realiseren
                     </p>
                     <a href="#" class="cta-btn" onclick="showPage('contact')">
-                        <span>Bekijk onze diensten</span>
-                        <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                        <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                        <span>Plan gratis gesprek</span>
                     </a>
-                </div>
-            </section>
-
-            <!-- Stats Section -->
-            <section class="section section-alt animate-on-scroll">
-                <div class="container">
-                    <div class="stats-grid" id="statsGrid">
-                        <div class="stat-card">
-                            <div class="stat-number" id="projectCount">0</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="clientCount">0</div>
-                            <div class="stat-label">Happy Clients</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="techCount">0</div>
-                            <div class="stat-label">Technologies Used</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Client Satisfaction</div>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
@@ -1497,22 +1730,69 @@
                             <form class="contact-form" onsubmit="handleContactForm(event)">
                                 <div class="form-group">
                                     <label for="name" class="form-label">Naam</label>
-                                    <input type="text" id="name" name="name" class="form-input" required>
+                                    <input type="text" id="name" name="name" class="form-input" required placeholder="Bijv. Jan van der Berg">
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" id="email" name="email" class="form-input" required>
+                                    <input type="email" id="email" name="email" class="form-input" required placeholder="jan@bedrijf.nl">
                                 </div>
                                 <div class="form-group">
                                     <label for="subject" class="form-label">Onderwerp</label>
-                                    <input type="text" id="subject" name="subject" class="form-input" required>
+                                    <input type="text" id="subject" name="subject" class="form-input" required placeholder="Bijv. Website voor kledingmerk">
                                 </div>
                                 <div class="form-group">
                                     <label for="message" class="form-label">Bericht</label>
-                                    <textarea id="message" name="message" class="form-textarea" required placeholder="Vertel ons over je project..."></textarea>
+                                    <textarea id="message" name="message" class="form-textarea" required placeholder="Vertel ons over je project, doelgroep en wensen..."></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" style="width: 100%;">Verstuur Bericht</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                    <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                                    Verstuur Bericht
+                                </button>
+                                <div class="form-success" id="formSuccess">
+                                    ✅ Bedankt! We nemen binnen 24u contact op.
+                                </div>
                             </form>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div style="max-width: 800px; margin: 4rem auto 0;">
+                        <h3 style="color: var(--primary-dark); font-family: var(--font-display); font-size: 1.8rem; text-align: center; margin-bottom: 2rem;">Veelgestelde Vragen</h3>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                <span>Hoelang duurt het ontwikkelen van een website?</span>
+                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Een standaard website duurt 2-4 weken, een webshop 4-8 weken. Dit hangt af van de complexiteit en het aantal pagina's. We houden je altijd op de hoogte van de voortgang.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                <span>Wat zijn de kosten voor een website?</span>
+                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Onze websites starten vanaf €1.500 voor een basis showcase site. E-commerce oplossingen vanaf €3.500. We maken altijd een offerte op maat na een gratis kennismakingsgesprek.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                <span>Krijg ik ondersteuning na de lancering?</span>
+                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Ja! We bieden 30 dagen gratis ondersteuning na lancering. Daarna kun je kiezen voor een onderhoudscontract of ondersteuning per uur.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFAQ(this)">
+                                <span>Kan ik zelf content aanpassen?</span>
+                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Absoluut! We bouwen gebruiksvriendelijke websites met een eenvoudig beheersysteem. Je krijgt ook training om zelf wijzigingen te maken.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1653,7 +1933,6 @@
                         <a href="#" onclick="showPage('home')" class="footer-link">Home</a>
                         <a href="#" onclick="showPage('portfolio')" class="footer-link">Portfolio</a>
                         <a href="#" onclick="showPage('about')" class="footer-link">Over ons</a>
-                        <a href="#" onclick  class="footer-link">Over ons</a>
                         <a href="#" onclick="showPage('contact')" class="footer-link">Contact</a>
                     </nav>
                 </div>
@@ -1712,84 +1991,8 @@
             currentProject: null
         };
 
-        // Google Sheets CSV URL - Updated to correct format
+        // Google Sheets CSV URL
         const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaT1XO14T_dVasI4M1PhxS46v03dB-8DsUhU0-kzqmm6DJUn6z2Yy0m2NQyPpCHktMvNxhbIXa6tg/pub?output=csv';
-
-        // Sample JSON Data (simulating projects.json)
-        const SAMPLE_PROJECTS = [
-            {
-                "projectName": "Rafle L'Argent",
-                "shortDescription": "Luxe fashion webshop met minimalistisch design",
-                "category": "E-commerce",
-                "client": "Rafle L'argent",
-                "launchDate": "2024-11",
-                "status": "Completed",
-                "technologiesUsed": ["Next.js", "Stripe", "Tailwind CSS", "Vercel"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=Rafle+L'Argent",
-                "websiteUrl": "https://raflelargent.com",
-                "description": "Een minimalistische en luxueuze mode-ervaring met custom CMS en geautomatiseerde verzendoplossing. De webshop combineert elegante esthetiek met krachtige e-commerce functionaliteit."
-            },
-            {
-                "projectName": "TechStart Solutions",
-                "shortDescription": "Corporate website voor tech startup",
-                "category": "Showcase",
-                "client": "TechStart BV",
-                "launchDate": "2024-10",
-                "status": "Completed",
-                "technologiesUsed": ["React", "Node.js", "MongoDB", "AWS"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=TechStart+Solutions",
-                "websiteUrl": "https://techstart-solutions.com",
-                "description": "Een moderne corporate website die de innovatieve diensten van TechStart presenteert met interactieve elementen en geoptimaliseerde gebruikerservaring."
-            },
-            {
-                "projectName": "Green Energy Portal",
-                "shortDescription": "Duurzame energie platform met dashboard",
-                "category": "Web Design",
-                "client": "GreenTech Industries",
-                "launchDate": "2024-12",
-                "status": "Completed",
-                "technologiesUsed": ["Vue.js", "Python", "PostgreSQL", "Docker"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=Green+Energy+Portal",
-                "websiteUrl": "https://greenenergy-portal.com",
-                "description": "Een uitgebreid platform voor het monitoren en beheren van duurzame energie projecten met real-time data visualisatie en gebruiksvriendelijke dashboards."
-            },
-            {
-                "projectName": "Artisan Marketplace",
-                "shortDescription": "Online marktplaats voor ambachtelijke producten",
-                "category": "E-commerce",
-                "client": "Artisan Collective",
-                "launchDate": "2024-09",
-                "status": "Completed",
-                "technologiesUsed": ["Shopify", "React", "GraphQL", "Stripe"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=Artisan+Marketplace",
-                "websiteUrl": "https://artisan-marketplace.com",
-                "description": "Een unieke marktplaats die ambachtslieden verbindt met klanten wereldwijd, met geavanceerde zoekfunctionaliteit en geïntegreerde betalingssystemen."
-            },
-            {
-                "projectName": "HealthCare Connect",
-                "shortDescription": "Patiënt-arts communicatie platform",
-                "category": "Web Design",
-                "client": "MedTech Solutions",
-                "launchDate": "2025-01",
-                "status": "In Development",
-                "technologiesUsed": ["React Native", "Node.js", "MongoDB", "Socket.io"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=HealthCare+Connect",
-                "websiteUrl": "",
-                "description": "Een veilig communicatieplatform dat patiënten en zorgverleners verbindt met real-time messaging, afspraakplanning en medische dossier toegang."
-            },
-            {
-                "projectName": "Creative Studio Portfolio",
-                "shortDescription": "Interactieve portfolio voor creatief bureau",
-                "category": "Showcase",
-                "client": "Creative Minds Studio",
-                "launchDate": "2024-08",
-                "status": "Completed",
-                "technologiesUsed": ["Three.js", "GSAP", "Nuxt.js", "Contentful"],
-                "imageUrl": "/placeholder.svg?height=300&width=400&text=Creative+Studio",
-                "websiteUrl": "https://creativeminds-studio.com",
-                "description": "Een visueel indrukwekkende portfolio website met 3D animaties en interactieve elementen die de creativiteit van het bureau perfect weergeeft."
-            }
-        ];
 
         // Utility Functions
         function createImageElement(src, alt, fallback = '🌐') {
@@ -1802,21 +2005,27 @@
         function getStatusInfo(status, websiteUrl) {
             const hasValidUrl = hasValidWebsiteUrl(websiteUrl);
             
-            if (!status || status.toLowerCase() === 'completed') {
+            if (!status) {
                 return hasValidUrl ? 
-                    { class: 'status-completed', text: 'Live', showButton: true } :
-                    { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+                    { class: 'status-live', text: '🟢 Live', showButton: true } :
+                    { class: 'status-coming-soon', text: '🕒 Binnenkort', showButton: false };
             }
             
             const statusLower = status.toLowerCase();
             
-            if (statusLower.includes('development') || statusLower.includes('progress')) {
-                return { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+            if (statusLower.includes('completed') || statusLower.includes('live') || statusLower.includes('voltooid')) {
+                return hasValidUrl ? 
+                    { class: 'status-live', text: '🟢 Live', showButton: true } :
+                    { class: 'status-coming-soon', text: '🕒 Binnenkort', showButton: false };
+            }
+            
+            if (statusLower.includes('development') || statusLower.includes('progress') || statusLower.includes('ontwikkeling')) {
+                return { class: 'status-coming-soon', text: '🕒 In Ontwikkeling', showButton: false };
             }
             
             return hasValidUrl ? 
-                { class: 'status-completed', text: 'Live', showButton: true } :
-                { class: 'status-coming-soon', text: 'Coming Soon', showButton: false };
+                { class: 'status-live', text: '🟢 Live', showButton: true } :
+                { class: 'status-coming-soon', text: '🕒 Binnenkort', showButton: false };
         }
 
         function getCategoryClass(category) {
@@ -1865,7 +2074,6 @@
         async function loadPortfolioData() {
             try {
                 console.log('Loading portfolio data from Google Sheets...');
-                console.log('Sheet URL:', SHEETS_CSV_URL);
                 
                 const response = await fetch(SHEETS_CSV_URL);
                 if (!response.ok) {
@@ -1873,38 +2081,32 @@
                 }
                 
                 const csvText = await response.text();
-                console.log('Raw CSV data received:', csvText.substring(0, 500) + '...');
+                console.log('CSV data received, parsing...');
                 
                 return new Promise((resolve, reject) => {
                     Papa.parse(csvText, {
                         header: true,
                         skipEmptyLines: true,
                         transformHeader: (header) => {
-                            // Clean up header names to match our expected format
                             return header.trim();
                         },
                         transform: (value, header) => {
-                            // Clean up cell values
                             return value ? value.trim() : '';
                         },
                         complete: (results) => {
-                            console.log('CSV parsing complete. Errors:', results.errors);
-                            console.log('Raw parsed data:', results.data);
+                            console.log('CSV parsing complete. Raw data:', results.data);
                             
                             if (results.errors.length > 0) {
                                 console.warn('CSV parsing warnings:', results.errors);
                             }
                             
-                            // Filter out empty rows and normalize data
                             const validData = results.data
                                 .filter(row => {
-                                    // Check if row has essential data
                                     const hasProjectName = row['Project Name'] && row['Project Name'].trim() !== '';
                                     const hasDescription = row['Short Description'] && row['Short Description'].trim() !== '';
                                     return hasProjectName || hasDescription;
                                 })
                                 .map(row => {
-                                    // Normalize the data structure
                                     return {
                                         projectName: row['Project Name'] || 'Untitled Project',
                                         shortDescription: row['Short Description'] || 'No description available',
@@ -1920,13 +2122,7 @@
                                 });
                             
                             console.log(`Portfolio data processed successfully. Found ${validData.length} projects:`, validData);
-                            
-                            if (validData.length === 0) {
-                                console.warn('No valid projects found in the data. Using fallback data.');
-                                resolve(SAMPLE_PROJECTS);
-                            } else {
-                                resolve(validData);
-                            }
+                            resolve(validData);
                         },
                         error: (error) => {
                             console.error('CSV parsing error:', error);
@@ -1937,8 +2133,21 @@
                 
             } catch (error) {
                 console.error('Error loading portfolio data:', error);
-                console.log('Falling back to sample data');
-                return SAMPLE_PROJECTS;
+                // Fallback sample data
+                return [
+                    {
+                        projectName: "Rafle L'Argent",
+                        shortDescription: "Luxe fashion webshop met minimalistisch design",
+                        category: "E-commerce",
+                        client: "Rafle L'argent",
+                        launchDate: "2024-11",
+                        status: "Completed",
+                        technologiesUsed: "Shopify, Liquid, CSS",
+                        imageUrl: "https://i.postimg.cc/Prwkdvcr/Rafle-L-argent.png",
+                        websiteUrl: "https://raflelargent.com",
+                        description: "Een minimalistische en luxueuze mode-ervaring met custom CMS en geautomatiseerde verzendoplossing."
+                    }
+                ];
             }
         }
 
@@ -1949,26 +2158,21 @@
 
             console.log('Rendering mini portfolio with', AppState.portfolioData.length, 'total projects');
 
-            // Filter completed projects and limit to 6
             const completedProjects = AppState.portfolioData
                 .filter(project => {
                     const status = project.status || 'Completed';
                     const isCompleted = status.toLowerCase().includes('completed') || 
                                       status.toLowerCase().includes('live') || 
                                       status.toLowerCase() === 'completed';
-                    console.log(`Project "${project.projectName}" status: "${status}", isCompleted: ${isCompleted}`);
                     return isCompleted;
                 })
-                .slice(0, 6);
-
-            console.log('Filtered completed projects for mini portfolio:', completedProjects.length);
+                .slice(0, 3);
 
             if (completedProjects.length === 0) {
                 grid.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Geen voltooide projecten gevonden</h3>
-                        <p style="color: var(--lighter-grey);">Portfolio data: ${AppState.portfolioData.length} projecten geladen</p>
-                        <button onclick="console.log('All projects:', AppState.portfolioData)" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent-blue); color: white; border: none; border-radius: 4px;">Debug: Log All Projects</button>
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Projecten worden geladen...</h3>
+                        <p style="color: var(--lighter-grey);">Even geduld alsjeblieft</p>
                     </div>
                 `;
                 return;
@@ -1978,12 +2182,11 @@
                 const statusInfo = getStatusInfo(project.status, project.websiteUrl);
                 const categoryClass = getCategoryClass(project.category);
                 
-                // Create short description (max 12 words for mini cards)
                 const words = project.shortDescription.split(' ');
                 const shortDescription = words.length > 12 ? words.slice(0, 12).join(' ') + '...' : words.join(' ');
                 
                 return `
-                    <div class="mini-portfolio-card animate-on-scroll" onclick="openProjectDetail(${AppState.portfolioData.indexOf(project)})" style="animation-delay: ${index * 0.1}s">
+                    <div class="mini-portfolio-card" onclick="openProjectDetail(${AppState.portfolioData.indexOf(project)})" data-aos="fade-up" data-aos-delay="${index * 100}">
                         <div class="mini-portfolio-image">
                             ${createImageElement(project.imageUrl, project.projectName, '🌐')}
                         </div>
@@ -2002,12 +2205,12 @@
                                 ${statusInfo.showButton ? `
                                     <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
                                         <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-                                        View Website
+                                        Live bekijken
                                     </a>
                                 ` : `
                                     <span class="portfolio-btn portfolio-btn-secondary">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        Coming Soon
+                                        Binnenkort
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${AppState.portfolioData.indexOf(project)})">
@@ -2020,7 +2223,6 @@
                 `;
             }).join('');
 
-            // Re-initialize Lucide icons for new content
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
@@ -2030,13 +2232,11 @@
             const grid = document.getElementById('portfolioGrid');
             if (!grid) return;
 
-            console.log('Rendering full portfolio with', AppState.portfolioData.length, 'projects');
-
             if (AppState.portfolioData.length === 0) {
                 grid.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Geen projecten gevonden</h3>
-                        <p style="color: var(--lighter-grey);">Portfolio data wordt momenteel geladen...</p>
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Projecten worden geladen...</h3>
+                        <p style="color: var(--lighter-grey);">Even geduld alsjeblieft</p>
                     </div>
                 `;
                 return;
@@ -2046,12 +2246,11 @@
                 const statusInfo = getStatusInfo(project.status, project.websiteUrl);
                 const categoryClass = getCategoryClass(project.category);
                 
-                // Create short description (max 15 words)
                 const words = project.shortDescription.split(' ');
                 const shortDescription = words.length > 15 ? words.slice(0, 15).join(' ') + '...' : words.join(' ');
                 
                 return `
-                    <div class="portfolio-card" onclick="openProjectDetail(${index})" style="animation-delay: ${index * 0.1}s">
+                    <div class="portfolio-card" onclick="openProjectDetail(${index})" data-aos="fade-up" data-aos-delay="${index * 100}">
                         <div class="portfolio-image">
                             ${createImageElement(project.imageUrl, project.projectName, '🌐')}
                         </div>
@@ -2070,12 +2269,12 @@
                                 ${statusInfo.showButton ? `
                                     <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
                                         <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-                                        View Website
+                                        Live bekijken
                                     </a>
                                 ` : `
                                     <span class="portfolio-btn portfolio-btn-secondary">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        Coming Soon
+                                        Binnenkort
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${index})">
@@ -2088,10 +2287,39 @@
                 `;
             }).join('');
 
-            // Re-initialize Lucide icons for new content
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
+        }
+
+        function updateStats() {
+            const projectCount = AppState.portfolioData.length;
+            const clientCount = new Set(AppState.portfolioData.map(p => p.client).filter(c => c)).size;
+            const techCount = new Set(
+                AppState.portfolioData
+                    .flatMap(p => formatTechnologies(p.technologiesUsed))
+                    .filter(t => t)
+            ).size;
+
+            setTimeout(() => {
+                const projectElement = document.getElementById('projectCount');
+                const clientElement = document.getElementById('clientCount');
+                const techElement = document.getElementById('techCount');
+
+                if (projectElement) animateNumber(projectElement, Math.max(projectCount, 6));
+                if (clientElement) animateNumber(clientElement, Math.max(clientCount, 6));
+                if (techElement) animateNumber(techElement, Math.max(techCount, 10));
+            }, 500);
+        }
+
+        // Project Detail Functions
+        function openProjectDetail(index) {
+            const project = AppState.portfolioData[index];
+            if (!project) return;
+
+            AppState.currentProject = project;
+            renderProjectDetail(project);
+            showPage('project-detail');
         }
 
         function renderProjectDetail(project) {
@@ -2182,52 +2410,8 @@
                 </div>
             `;
 
-            // Re-initialize Lucide icons for new content
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
-            }
-        }
-
-        function updateStats() {
-            const projectCount = AppState.portfolioData.length;
-            const clientCount = new Set(AppState.portfolioData.map(p => p.client).filter(c => c)).size;
-            const techCount = new Set(
-                AppState.portfolioData
-                    .flatMap(p => formatTechnologies(p.technologiesUsed))
-                    .filter(t => t)
-            ).size;
-
-            console.log('Stats update:', { projectCount, clientCount, techCount });
-
-            setTimeout(() => {
-                const projectElement = document.getElementById('projectCount');
-                const clientElement = document.getElementById('clientCount');
-                const techElement = document.getElementById('techCount');
-
-                if (projectElement) animateNumber(projectElement, projectCount);
-                if (clientElement) animateNumber(clientElement, Math.max(clientCount, 1));
-                if (techElement) animateNumber(techElement, Math.max(techCount, 5));
-            }, 500);
-        }
-
-        function handleURLParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page');
-            const projectSlug = urlParams.get('project');
-            
-            if (projectSlug && AppState.portfolioData.length > 0) {
-                const projectIndex = AppState.portfolioData.findIndex(project => {
-                    return createProjectSlug(project.projectName) === projectSlug;
-                });
-                
-                if (projectIndex !== -1) {
-                    openProjectDetail(projectIndex);
-                    return;
-                }
-            }
-            
-            if (page && ['home', 'portfolio', 'about', 'contact', 'terms', 'return', 'warranty', 'privacy'].includes(page)) {
-                showPage(page);
             }
         }
 
@@ -2253,8 +2437,6 @@
             }
 
             document.getElementById('navLinks').classList.remove('active');
-
-            // Scroll to top when changing pages
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             const url = new URL(window.location);
@@ -2269,7 +2451,36 @@
         }
 
         function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            
+            navLinks.classList.toggle('active');
+            
+            // Update menu icon
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // FAQ Functions
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const icon = element.querySelector('i');
+            
+            faqItem.classList.toggle('active');
+            
+            if (faqItem.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
         }
 
         // Form Handling
@@ -2279,6 +2490,11 @@
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
             
+            // Show success message
+            const successDiv = document.getElementById('formSuccess');
+            successDiv.style.display = 'block';
+            
+            // Create mailto link
             const subject = encodeURIComponent(`Van Appiah Contact: ${data.subject}`);
             const body = encodeURIComponent(`
 Naam: ${data.name}
@@ -2292,10 +2508,13 @@ Verzonden via Van Appiah website contactformulier
             `);
             
             const mailtoLink = `mailto:vanappiah.com@gmail.com?subject=${subject}&body=${body}`;
-            window.location.href = mailtoLink;
+            
+            // Small delay then open email client
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+            }, 1000);
             
             event.target.reset();
-            alert('Bedankt voor je bericht! Je email client opent om het bericht te verzenden.');
         }
 
         // Scroll Effects
@@ -2311,27 +2530,27 @@ Verzonden via Van Appiah website contactformulier
             });
         }
 
-        // Intersection Observer for Animations
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
         // URL Parameter Handling
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            const projectSlug = urlParams.get('project');
+            
+            if (projectSlug && AppState.portfolioData.length > 0) {
+                const projectIndex = AppState.portfolioData.findIndex(project => {
+                    return createProjectSlug(project.projectName) === projectSlug;
+                });
+                
+                if (projectIndex !== -1) {
+                    openProjectDetail(projectIndex);
+                    return;
+                }
+            }
+            
+            if (page && ['home', 'portfolio', 'about', 'contact', 'terms', 'return', 'warranty', 'privacy'].includes(page)) {
+                showPage(page);
+            }
+        }
 
         // Loading Screen
         function hideLoadingScreen() {
@@ -2355,8 +2574,17 @@ Verzonden via Van Appiah website contactformulier
                 updateStats();
                 
                 initScrollEffects();
-                initScrollAnimations();
                 handleURLParameters();
+
+                // Initialize AOS animations
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-out',
+                        once: true,
+                        offset: 100
+                    });
+                }
 
                 // Initialize Lucide icons
                 if (typeof lucide !== 'undefined') {
@@ -2366,10 +2594,7 @@ Verzonden via Van Appiah website contactformulier
                 console.log('Application initialized successfully');
                 
             } catch (error) {
-                console.error('Failed to load portfolio data:', error);
-                
-                // Use sample data as fallback
-                AppState.portfolioData = SAMPLE_PROJECTS;
+                console.error('Failed to initialize application:', error);
                 
                 renderMiniPortfolio();
                 renderPortfolio();
