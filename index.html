@@ -2,60 +2,113 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Van Appiah - Digital Solutions & Portfolio</title>
     <meta name="description" content="Wij bouwen digitale ervaringen die bedrijven laten groeien. Webdesign, branding & slimme systemen voor jouw succes.">
     
-    <!-- Fonts -->
+    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
+    <!-- Icons and Libraries -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
     <style>
-        /* CSS Variables */
+        /* Mobile-First CSS Variables */
         :root {
-            --primary-dark: #1a1a1a;
-            --secondary-dark: #2d2d2d;
-            --medium-grey: #4a4a4a;
-            --light-grey: #6b7280;
-            --lighter-grey: #9ca3af;
-            --background-light: #f8fafc;
-            --background-white: #ffffff;
-            --border-light: #e5e7eb;
-            --accent-blue: #3b82f6;
-            --accent-green: #10b981;
-            --accent-orange: #f59e0b;
-            --accent-purple: #8b5cf6;
-            --accent-red: #ef4444;
-            --accent-beige: #f5f1eb;
-            --text-primary: #111827;
-            --text-secondary: #6b7280;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Primary Colors */
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #8b5cf6;
+            --primary-50: #f8faff;
+            --primary-100: #e0e7ff;
+            --primary-200: #c7d2fe;
+            
+            /* Neutral Colors */
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-300: #d4d4d4;
+            --neutral-400: #a3a3a3;
+            --neutral-500: #737373;
+            --neutral-600: #525252;
+            --neutral-700: #404040;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
+            
+            /* Semantic Colors */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            
+            /* Text Colors */
+            --text-primary: #171717;
+            --text-secondary: #525252;
+            --text-tertiary: #737373;
+            --text-inverse: #ffffff;
+            
+            /* Border & Shadow */
+            --border-light: #e5e5e5;
+            --border-medium: #d4d4d4;
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary-50) 0%, var(--bg-primary) 50%, var(--primary-50) 100%);
+            
+            /* Typography */
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            --border-radius: 16px;
-            --border-radius-sm: 12px;
-            --border-radius-xs: 8px;
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Border Radius */
+            --radius-xs: 4px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Spacing - Mobile Optimized */
+            --spacing-xs: 0.5rem;   /* 8px */
+            --spacing-sm: 0.75rem;  /* 12px */
+            --spacing-md: 1rem;     /* 16px */
+            --spacing-lg: 1.5rem;   /* 24px */
+            --spacing-xl: 2rem;     /* 32px */
+            --spacing-2xl: 2.5rem;  /* 40px */
+            --spacing-3xl: 3rem;    /* 48px */
+            
+            /* Mobile Navigation */
+            --nav-height: 60px;
+            --mobile-cta-height: 70px;
             
             /* Category Colors */
-            --category-ecommerce: #8e44ad;
-            --category-webdesign: #2980b9;
-            --category-showcase: #27ae60;
-            --category-business: #e67e22;
+            --category-ecommerce: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            --category-webdesign: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            --category-showcase: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --category-business: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         /* Reset & Base */
@@ -63,21 +116,27 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            height: 100%;
         }
 
         body {
             font-family: var(--font-primary);
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--text-primary);
-            background-color: var(--background-white);
+            background-color: var(--bg-primary);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
+            min-height: 100vh;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Loading Screen */
@@ -86,14 +145,14 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            height: 100vh;
+            background: var(--gradient-hero);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
         }
 
         .loading-screen.hidden {
@@ -103,33 +162,36 @@
 
         .loading-logo {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 600;
-            color: var(--background-white);
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
+            font-size: clamp(2rem, 10vw, 3rem);
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 0.6s ease-out;
         }
 
         .loading-text {
-            color: var(--accent-blue);
-            font-size: 1rem;
+            color: var(--primary);
+            font-size: 0.875rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out 0.3s both;
+            font-weight: 600;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
         }
 
         .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255,255,255,0.2);
-            border-top: 3px solid var(--accent-blue);
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--primary-100);
+            border-top: 2px solid var(--primary);
+            border-radius: var(--radius-full);
             animation: spin 1s linear infinite;
-            margin-top: 2rem;
+            margin-top: var(--spacing-lg);
         }
 
-        /* Navigation */
+        /* Mobile Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -139,95 +201,166 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: var(--transition);
+            height: var(--nav-height);
             border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
         }
 
         .navbar.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 var(--spacing-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
         }
 
         .logo {
             font-family: var(--font-display);
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             transition: var(--transition);
         }
 
         .logo:hover {
-            color: var(--accent-blue);
+            transform: scale(1.02);
         }
 
+        /* Desktop Navigation - Hidden on Mobile */
         .nav-links {
+            display: none;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: var(--spacing-sm);
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn.active {
+            background: var(--primary-50);
+            border-color: var(--primary-200);
+            color: var(--primary);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 1001;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            padding-top: var(--nav-height);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-blue);
-        }
-
-        .nav-links a.active {
-            color: var(--accent-blue);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-blue);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
+        .mobile-menu-close {
             background: none;
             border: none;
-            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--primary-dark);
-            padding: 0.5rem;
-            min-height: 48px;
-            min-width: 48px;
-            border-radius: var(--border-radius-xs);
+            color: var(--text-secondary);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
             transition: var(--transition);
         }
 
-        .mobile-menu-btn:hover {
-            background: var(--background-light);
+        .mobile-menu-close:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-links {
+            flex: 1;
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            list-style: none;
+        }
+
+        .mobile-menu-links a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            min-height: 56px;
+            font-size: 1rem;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a.active {
+            background: var(--primary-50);
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .mobile-menu-links .menu-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
         }
 
         /* Mobile CTA Bar */
@@ -236,18 +369,23 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--background-white);
+            background: var(--bg-primary);
             border-top: 1px solid var(--border-light);
-            padding: 1rem;
-            display: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
             z-index: 999;
             box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+            backdrop-filter: blur(20px);
+            height: var(--mobile-cta-height);
+            padding-bottom: calc(var(--spacing-sm) + env(safe-area-inset-bottom));
         }
 
         .mobile-cta-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: var(--spacing-sm);
             justify-content: space-between;
+            width: 100%;
+            align-items: center;
         }
 
         .mobile-cta-btn {
@@ -255,40 +393,45 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.25rem;
-            padding: 0.75rem 0.5rem;
+            gap: 2px;
+            padding: var(--spacing-sm);
             text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-size: 0.7rem;
             font-weight: 500;
-            border-radius: var(--border-radius-xs);
+            border-radius: var(--radius-md);
             transition: var(--transition);
-            min-height: 60px;
+            min-height: 48px;
+            justify-content: center;
         }
 
         .mobile-cta-btn:hover {
-            background: var(--background-light);
-            color: var(--primary-dark);
+            background: var(--primary-50);
+            color: var(--primary);
+            transform: translateY(-1px);
         }
 
         .mobile-cta-btn.primary {
-            background: var(--accent-blue);
+            background: var(--gradient-primary);
             color: white;
+            font-weight: 600;
         }
 
         .mobile-cta-btn.primary:hover {
-            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         /* Page Container */
         .page-container {
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: var(--nav-height);
+            padding-bottom: var(--mobile-cta-height);
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.3s ease-out;
         }
 
         .page.active {
@@ -297,288 +440,311 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - var(--nav-height) - var(--mobile-cta-height));
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--background-light) 0%, var(--background-white) 100%);
+            background: var(--gradient-hero);
             position: relative;
             overflow: hidden;
-            padding: 2rem 1rem;
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .hero-content {
             text-align: center;
-            max-width: 900px;
+            max-width: 100%;
             width: 100%;
             z-index: 2;
+            position: relative;
         }
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.75rem, 8vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
             line-height: 1.1;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            font-size: clamp(1rem, 4vw, 1.2rem);
             color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            max-width: 600px;
+            margin-bottom: var(--spacing-2xl);
+            font-weight: 400;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+            line-height: 1.4;
+            max-width: 90%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.6s both;
-            margin-bottom: 4rem;
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
             flex-direction: column;
+            gap: var(--spacing-md);
             align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            animation: fadeInUp 1s ease-out 0.8s both;
-            cursor: pointer;
-            transition: var(--transition);
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+            margin-bottom: var(--spacing-2xl);
         }
 
-        .scroll-indicator:hover {
-            color: var(--accent-blue);
-        }
-
-        .scroll-indicator span {
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .scroll-arrow {
-            width: 20px;
-            height: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
-        }
-
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-xl);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            min-width: 180px;
-            min-height: 48px;
+            width: 100%;
+            max-width: 280px;
+            min-height: 52px;
             position: relative;
             overflow: hidden;
-            gap: 0.5rem;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            gap: var(--spacing-sm);
+            font-family: var(--font-primary);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-dark) 100%);
-            color: var(--background-white);
-            border: 2px solid var(--accent-blue);
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
             box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-outline {
-            background: transparent;
-            color: var(--primary-dark);
-            border: 2px solid var(--primary-dark);
+            background: var(--bg-primary);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-outline:hover {
-            background: var(--primary-dark);
-            color: var(--background-white);
+            background: var(--primary);
+            color: var(--text-inverse);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Solutions Section */
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-tertiary);
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-lg);
+        }
+
+        .scroll-indicator:hover {
+            color: var(--primary);
+            background: var(--primary-50);
+        }
+
+        .scroll-indicator span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .scroll-arrow {
+            width: 18px;
+            height: 18px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .section-alt {
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* Solutions Grid */
         .solutions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
         }
 
         .solution-card {
-            background: var(--background-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
+            background: var(--bg-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-sm);
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition);
         }
 
         .solution-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-200);
+        }
+
+        .solution-card:hover::before {
+            transform: scaleX(1);
         }
 
         .solution-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
             display: block;
         }
 
         .solution-title {
             font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
         }
 
         .solution-description {
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.95rem;
         }
 
         .solution-link {
-            color: var(--accent-blue);
+            color: var(--primary);
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--spacing-xs);
             transition: var(--transition);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
         }
 
         .solution-link:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 4rem 0;
-        }
-
-        .section-alt {
-            background: var(--background-light);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            background: var(--primary-50);
+            transform: translateX(2px);
         }
 
         /* Portfolio Grid */
-        .portfolio-grid {
+        .portfolio-grid, .mini-portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .mini-portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
         }
 
         .portfolio-card, .mini-portfolio-card {
-            background: var(--background-white);
-            border-radius: var(--border-radius);
+            background: var(--bg-primary);
+            border-radius: var(--radius-2xl);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--border-light);
-            position: relative;
         }
 
         .portfolio-card:hover, .mini-portfolio-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-200);
         }
 
         .portfolio-image, .mini-portfolio-image {
             width: 100%;
-            height: 220px;
-            background: var(--background-light);
+            height: 200px;
+            background: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .mini-portfolio-image {
-            height: 180px;
         }
 
         .portfolio-image img, .mini-portfolio-image img {
@@ -590,83 +756,72 @@
 
         .portfolio-card:hover .portfolio-image img,
         .mini-portfolio-card:hover .mini-portfolio-image img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .portfolio-content, .mini-portfolio-content {
-            padding: 1.5rem;
+            padding: var(--spacing-lg);
         }
 
         .portfolio-badges, .mini-portfolio-badges {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
             flex-wrap: wrap;
             align-items: center;
         }
 
         .portfolio-category, .mini-portfolio-category {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: white;
         }
 
-        .category-ecommerce {
-            background: var(--category-ecommerce);
-        }
-
-        .category-webdesign {
-            background: var(--category-webdesign);
-        }
-
-        .category-showcase {
-            background: var(--category-showcase);
-        }
-
-        .category-business {
-            background: var(--category-business);
-        }
+        .category-ecommerce { background: var(--category-ecommerce); }
+        .category-webdesign { background: var(--category-webdesign); }
+        .category-showcase { background: var(--category-showcase); }
+        .category-business { background: var(--category-business); }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .status-online {
-            background: var(--accent-green);
+            background: var(--success);
             color: white;
         }
 
         .status-offline {
-            background: var(--light-grey);
+            background: var(--neutral-400);
             color: white;
         }
 
         .portfolio-title, .mini-portfolio-title {
             font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary-dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
             line-height: 1.3;
         }
 
         .portfolio-description, .mini-portfolio-description {
             color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 1rem;
+            line-height: 1.4;
+            margin-bottom: var(--spacing-md);
             font-size: 0.9rem;
         }
 
@@ -674,127 +829,131 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-md);
         }
 
         .portfolio-client, .mini-portfolio-client {
             font-style: italic;
+            font-weight: 500;
         }
 
         .portfolio-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: var(--spacing-sm);
             flex-wrap: wrap;
         }
 
         .portfolio-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius-xs);
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: var(--transition);
-            min-height: 44px;
+            min-height: 40px;
             border: none;
             cursor: pointer;
+            flex: 1;
+            justify-content: center;
         }
 
         .portfolio-btn-primary {
-            background: var(--accent-blue);
+            background: var(--gradient-primary);
             color: white;
         }
 
         .portfolio-btn-primary:hover {
-            background: var(--primary-dark);
             transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .portfolio-btn-secondary {
-            background: var(--background-light);
+            background: var(--bg-secondary);
             color: var(--text-secondary);
             border: 1px solid var(--border-light);
         }
 
         .portfolio-btn-secondary:hover {
-            background: var(--border-light);
-            color: var(--text-primary);
+            background: var(--primary-50);
+            color: var(--primary);
+            border-color: var(--primary-200);
         }
 
         .portfolio-btn-disabled {
-            background: var(--light-grey);
+            background: var(--neutral-300);
             color: white;
             cursor: not-allowed;
             opacity: 0.7;
         }
 
-        .portfolio-btn-disabled:hover {
-            transform: none;
-            background: var(--light-grey);
-        }
-
-        /* Project Detail Page */
+        /* Project Detail */
         .project-detail {
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: var(--spacing-md);
         }
 
         .project-back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-blue);
+            gap: var(--spacing-sm);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 2rem;
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius-xs);
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-lg);
             transition: var(--transition);
             min-height: 48px;
-            background: var(--background-white);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
+            background: var(--primary-50);
+            border: 1px solid var(--primary-200);
+            position: sticky;
+            top: calc(var(--nav-height) + var(--spacing-sm));
+            z-index: 100;
+            width: fit-content;
         }
 
         .project-back-btn:hover {
-            background: var(--background-light);
+            background: var(--primary-100);
             transform: translateX(-2px);
         }
 
         .project-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-xl);
         }
 
         .project-title {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 6vw, 2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
         }
 
         .project-subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.4;
         }
 
         .project-image {
             width: 100%;
-            height: 400px;
-            background: var(--background-light);
-            border-radius: var(--border-radius);
+            height: 250px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-2xl);
             overflow: hidden;
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-xl);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--shadow-md);
         }
 
         .project-image img {
@@ -805,53 +964,55 @@
 
         .project-info {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
         }
 
         .project-description {
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
             color: var(--text-secondary);
         }
 
         .project-sidebar {
-            background: var(--background-light);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            height: fit-content;
+            background: var(--bg-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-2xl);
+            order: -1;
+            border: 1px solid var(--border-light);
         }
 
         .project-detail-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--spacing-lg);
         }
 
         .project-detail-label {
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .project-detail-value {
             color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .project-tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: var(--spacing-xs);
         }
 
         .tech-tag {
-            background: var(--background-white);
+            background: var(--bg-primary);
             color: var(--text-primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
             font-weight: 500;
             border: 1px solid var(--border-light);
         }
@@ -859,67 +1020,68 @@
         .project-website-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-blue);
+            gap: var(--spacing-sm);
+            background: var(--gradient-primary);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-xl);
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            margin-top: 2rem;
-            min-height: 48px;
+            margin-top: var(--spacing-lg);
+            min-height: 52px;
             width: 100%;
             justify-content: center;
+            font-size: 0.95rem;
         }
 
         .project-website-btn:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
         .project-website-btn.disabled {
-            background: var(--light-grey);
+            background: var(--neutral-300);
             cursor: not-allowed;
             pointer-events: none;
         }
 
-        /* Contact Section */
+        /* Contact Form */
         .contact-form {
-            max-width: 600px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--spacing-lg);
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-sm);
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-primary);
+            font-size: 0.9rem;
         }
 
         .form-input,
         .form-textarea {
             width: 100%;
-            padding: 1rem;
+            padding: var(--spacing-md);
             border: 2px solid var(--border-light);
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--radius-lg);
             font-family: var(--font-primary);
             font-size: 1rem;
             transition: var(--transition);
-            background: var(--background-white);
-            min-height: 48px;
+            background: var(--bg-primary);
+            min-height: 52px;
         }
 
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-100);
         }
 
         .form-textarea {
@@ -928,11 +1090,11 @@
         }
 
         .form-success {
-            background: var(--accent-green);
+            background: var(--success);
             color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius-sm);
-            margin-top: 1rem;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-top: var(--spacing-md);
             text-align: center;
             font-weight: 600;
             display: none;
@@ -941,127 +1103,150 @@
         /* Stats Section */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
         }
 
         .stat-card {
             text-align: center;
-            padding: 2rem 1rem;
-            background: var(--background-white);
-            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            background: var(--bg-primary);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
         }
 
         .stat-label {
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            font-size: 0.75rem;
         }
 
         /* FAQ Section */
         .faq-item {
-            background: var(--background-white);
-            border-radius: var(--border-radius-sm);
-            margin-bottom: 1rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-md);
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .faq-question {
-            padding: 1.5rem;
+            padding: var(--spacing-lg);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-primary);
             transition: var(--transition);
+            min-height: 60px;
+            font-size: 0.95rem;
         }
 
         .faq-question:hover {
-            background: var(--background-light);
+            background: var(--primary-50);
         }
 
         .faq-answer {
-            padding: 0 1.5rem 1.5rem;
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.5;
             display: none;
+            font-size: 0.9rem;
         }
 
         .faq-item.active .faq-answer {
             display: block;
         }
 
-        /* Social Icons */
-        .social-icon, .footer-social-icon {
-            width: 20px;
-            height: 20px;
-            stroke-width: 1.5;
-            transition: var(--transition);
+        /* Social Links */
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
         }
 
         .social-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--spacing-sm);
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
-            padding: 0.75rem 1rem;
-            border-radius: 50px;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-xl);
             border: 1px solid var(--border-light);
-            min-height: 48px;
-            background: var(--background-white);
+            min-height: 52px;
+            background: var(--bg-primary);
+            justify-content: center;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .social-link:hover {
-            color: var(--primary-dark);
-            background: var(--background-light);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            color: var(--primary);
+            background: var(--primary-50);
+            border-color: var(--primary-200);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+        .social-icon {
+            width: 18px;
+            height: 18px;
+            stroke-width: 1.5;
         }
 
-        /* Footer Styles */
+        /* Footer */
         .site-footer {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: var(--background-white);
-            padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+            background: linear-gradient(135deg, var(--neutral-900) 0%, var(--neutral-800) 100%);
+            color: var(--text-inverse);
+            padding: var(--spacing-2xl) 0 var(--spacing-xl);
             margin-top: auto;
-            font-family: var(--font-primary);
+            position: relative;
         }
 
         .footer-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
         }
 
         .footer-column {
@@ -1070,10 +1255,10 @@
         }
 
         .footer-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
-            color: var(--background-white);
-            margin: 0 0 1.5rem 0;
+            color: var(--text-inverse);
+            margin: 0 0 var(--spacing-md) 0;
             font-family: var(--font-display);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -1082,29 +1267,29 @@
         .footer-contact {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: var(--spacing-sm);
         }
 
         .footer-contact-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
-            padding: 0.5rem 0;
-            min-height: 48px;
+            padding: var(--spacing-xs) 0;
+            min-height: 44px;
         }
 
         .footer-contact-item:hover {
-            color: var(--accent-blue);
-            transform: translateX(5px);
+            color: var(--primary-200);
+            transform: translateX(2px);
         }
 
         .footer-icon {
-            font-size: 1.1rem;
-            width: 24px;
+            font-size: 1rem;
+            width: 20px;
             display: inline-block;
             text-align: center;
         }
@@ -1112,55 +1297,55 @@
         .footer-nav {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: var(--spacing-sm);
         }
 
         .footer-link {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
-            padding: 0.5rem 0;
-            position: relative;
-            min-height: 48px;
+            padding: var(--spacing-xs) 0;
+            min-height: 44px;
             display: flex;
             align-items: center;
         }
 
         .footer-link:hover {
-            color: var(--accent-blue);
-            transform: translateX(5px);
+            color: var(--primary-200);
+            transform: translateX(2px);
         }
 
         .footer-socials {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: var(--spacing-sm);
         }
 
         .footer-social-link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            color: rgba(255, 255, 255, 0.9);
+            gap: var(--spacing-sm);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 48px;
+            min-height: 52px;
         }
 
         .footer-social-link:hover {
-            color: var(--background-white);
+            color: var(--text-inverse);
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .footer-social-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            height: 24px;
+            font-size: 1.1rem;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1168,88 +1353,101 @@
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
+            padding-top: var(--spacing-lg);
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-200) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
         }
 
         .footer-whatsapp {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: white;
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-xl);
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-top: 1rem;
-            min-height: 48px;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+            min-height: 52px;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
         }
 
         .footer-whatsapp:hover {
-            background: #128C7E;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-dark) 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 4rem 0;
+            padding: var(--spacing-2xl) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-title {
             font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
+            font-size: clamp(1.25rem, 5vw, 1.8rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 1;
         }
 
         .cta-description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xl);
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            line-height: 1.4;
         }
 
         .cta-btn {
             background: white;
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius-sm);
+            color: var(--primary);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-xl);
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            min-height: 48px;
+            gap: var(--spacing-sm);
+            min-height: 52px;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow-md);
         }
 
         .cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Error States */
-        .error-message {
-            background: var(--accent-red);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius-sm);
-            margin: 1rem 0;
-            text-align: center;
-            font-weight: 600;
-        }
-
+        /* Loading States */
         .loading-placeholder {
-            background: linear-gradient(90deg, var(--background-light) 25%, rgba(255,255,255,0.5) 50%, var(--background-light) 75%);
+            background: linear-gradient(90deg, var(--bg-tertiary) 25%, rgba(255,255,255,0.5) 50%, var(--bg-tertiary) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
+            border-radius: var(--radius-2xl);
         }
 
         /* Animations */
@@ -1261,7 +1459,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -1279,182 +1477,138 @@
             100% { background-position: -200% 0; }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Desktop Responsive Enhancements */
+        @media (min-width: 768px) {
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--background-white);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: var(--shadow-lg);
-                gap: 0.5rem;
-                border-top: 1px solid var(--border-light);
+                display: flex;
+                list-style: none;
+                gap: var(--spacing-xl);
+                align-items: center;
             }
 
-            .nav-links.active {
-                display: flex;
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-secondary);
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: var(--transition);
+                position: relative;
+                padding: var(--spacing-sm) 0;
+            }
+
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--gradient-primary);
+                transition: var(--transition);
+                border-radius: var(--radius-full);
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                color: var(--primary);
+            }
+
+            .nav-links a:hover::after,
+            .nav-links a.active::after {
+                width: 100%;
             }
 
             .mobile-menu-btn {
-                display: block;
+                display: none;
             }
 
             .mobile-cta-bar {
-                display: block;
+                display: none;
             }
 
             .page-container {
-                padding-bottom: 80px;
+                padding-bottom: 0;
             }
 
             .hero {
-                min-height: 90vh;
-                padding: 1rem;
+                min-height: calc(100vh - var(--nav-height));
             }
 
             .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .scroll-indicator {
-                bottom: 1rem;
-            }
-
-            .scroll-indicator span {
-                font-size: 0.75rem;
-            }
-
-            .solutions-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .mini-portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .project-info {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .project-sidebar {
-                order: -1;
-            }
-
-            .project-image {
-                height: 250px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .stat-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .social-links {
+                flex-direction: row;
                 justify-content: center;
             }
 
-            .section {
-                padding: 3rem 0;
+            .btn {
+                width: auto;
+                min-width: 200px;
             }
 
-            .project-back-btn {
-                position: sticky;
-                top: 100px;
-                z-index: 100;
-                margin-bottom: 2rem;
-                width: fit-content;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
+            .solutions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
 
-            .portfolio-content, .mini-portfolio-content {
-                padding: 1.25rem;
+            .portfolio-grid, .mini-portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: 85vh;
-                padding: 1rem 0.5rem;
-            }
-
-            .project-detail {
-                padding: 1rem;
+            .project-info {
+                grid-template-columns: 1fr 300px;
             }
 
             .project-sidebar {
-                padding: 1.5rem;
+                order: 0;
             }
 
-            .mobile-cta-buttons {
-                gap: 0.25rem;
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
 
-            .mobile-cta-btn {
-                font-size: 0.7rem;
-                padding: 0.5rem 0.25rem;
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .social-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                max-width: 1200px;
+                padding: 0 var(--spacing-xl);
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1024px) {
+            .solutions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .section {
+                padding: var(--spacing-3xl) 0;
             }
         }
 
         /* Utility Classes */
         .text-center { text-align: center; }
-        .text-left { text-align: left; }
-        .text-right { text-align: right; }
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .mb-4 { margin-bottom: 2rem; }
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .mt-4 { margin-top: 2rem; }
         .hidden { display: none; }
         .visible { display: block; }
 
-        /* Reduce motion for accessibility */
+        /* Accessibility & Performance */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
-            .scroll-arrow {
-                animation: none;
+        }
+
+        /* Safe Area Support */
+        @supports (padding: max(0px)) {
+            .mobile-cta-bar {
+                padding-bottom: max(var(--spacing-sm), env(safe-area-inset-bottom));
             }
         }
     </style>
@@ -1478,28 +1632,67 @@
                 <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Menu">
-                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+                <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Van Appiah</div>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Sluit menu">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-links">
+            <li>
+                <a href="#" onclick="showPage('home')" class="active" data-page="home">
+                    <i data-lucide="home" class="menu-icon"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showPage('portfolio')" data-page="portfolio">
+                    <i data-lucide="briefcase" class="menu-icon"></i>
+                    <span>Portfolio</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showPage('about')" data-page="about">
+                    <i data-lucide="info" class="menu-icon"></i>
+                    <span>Over ons</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showPage('contact')" data-page="contact">
+                    <i data-lucide="phone" class="menu-icon"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <!-- Mobile CTA Bar -->
     <div class="mobile-cta-bar" id="mobileCTABar">
         <div class="mobile-cta-buttons">
             <a href="tel:+31657160395" class="mobile-cta-btn">
-                <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
                 <span>Bellen</span>
             </a>
-            <a href="https://wa.me/31657160395" target="_blank" class="mobile-cta-btn">
-                <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+            <a href="https://api.whatsapp.com/send/?phone=31657160395&text&type=phone_number&app_absent=0" target="_blank" class="mobile-cta-btn">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
                 <span>WhatsApp</span>
             </a>
             <a href="mailto:vanappiah.com@gmail.com" class="mobile-cta-btn">
-                <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
-                <span>Mailen</span>
+                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                <span>Email</span>
             </a>
             <a href="#" onclick="showPage('contact')" class="mobile-cta-btn primary">
-                <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
                 <span>Afspraak</span>
             </a>
         </div>
@@ -1511,21 +1704,21 @@
         <div class="page active" id="home">
             <section class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">Wij bouwen digitale ervaringen die bedrijven laten groeien</h1>
+                    <h1 class="hero-title">Wij bouwen <span class="gradient-text">digitale ervaringen</span> die bedrijven laten groeien</h1>
                     <p class="hero-subtitle">Webdesign, branding & slimme systemen voor jouw succes</p>
                     <div class="hero-buttons">
                         <a href="#" class="btn btn-primary" onclick="showPage('portfolio')">
-                            <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
+                            <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
                             Bekijk ons werk
                         </a>
                         <a href="#" class="btn btn-outline" onclick="showPage('contact')">
-                            <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
-                            Plan gratis kennismaking
+                            <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                            Plan kennismaking
                         </a>
                     </div>
                 </div>
                 <div class="scroll-indicator" onclick="document.getElementById('solutions-section').scrollIntoView({behavior: 'smooth'})">
-                    <span>Scroll om meer te ontdekken</span>
+                    <span>Scroll voor meer</span>
                     <i data-lucide="chevron-down" class="scroll-arrow"></i>
                 </div>
             </section>
@@ -1545,7 +1738,7 @@
                                 Een sterke merkidentiteit die jouw bedrijf onderscheidt en vertrouwen wekt bij klanten.
                             </p>
                             <a href="#" class="solution-link" onclick="showPage('contact')">
-                                Meer weten <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                Meer weten <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
                             </a>
                         </div>
                         <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
@@ -1555,7 +1748,7 @@
                                 Op maat gemaakte websites die converteren en een perfecte gebruikerservaring bieden.
                             </p>
                             <a href="#" class="solution-link" onclick="showPage('portfolio')">
-                                Voorbeelden bekijken <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                Voorbeelden bekijken <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
                             </a>
                         </div>
                         <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
@@ -1565,7 +1758,7 @@
                                 Krachtige webshops die verkopen stimuleren en je bedrijf online laten groeien.
                             </p>
                             <a href="#" class="solution-link" onclick="showPage('contact')">
-                                Project starten <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                                Project starten <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
                             </a>
                         </div>
                     </div>
@@ -1581,14 +1774,14 @@
                     </p>
                     <div class="mini-portfolio-grid" id="miniPortfolioGrid">
                         <!-- Mini portfolio items will be loaded here -->
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
-                        <div class="mini-portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 300px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 300px;"></div>
+                        <div class="mini-portfolio-card loading-placeholder" style="height: 300px;"></div>
                     </div>
-                    <div style="text-align: center; margin-top: 3rem;">
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
                         <a href="#" class="btn btn-outline" onclick="showPage('portfolio')">
-                            <i data-lucide="grid-3x3" style="width: 20px; height: 20px;"></i>
-                            Bekijk alle projecten
+                            <i data-lucide="grid-3x3" style="width: 18px; height: 18px;"></i>
+                            Alle projecten
                         </a>
                     </div>
                 </div>
@@ -1600,11 +1793,11 @@
                     <div class="stats-grid" id="statsGrid">
                         <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
                             <div class="stat-number" id="projectCount">0</div>
-                            <div class="stat-label">Projecten Afgerond</div>
+                            <div class="stat-label">Projecten</div>
                         </div>
                         <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
                             <div class="stat-number" id="clientCount">0</div>
-                            <div class="stat-label">Tevreden Klanten</div>
+                            <div class="stat-label">Klanten</div>
                         </div>
                         <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
                             <div class="stat-number" id="techCount">0</div>
@@ -1626,7 +1819,7 @@
                         Plan nu een gratis gesprek en ontdek hoe we jouw digitale ambities kunnen realiseren
                     </p>
                     <a href="#" class="cta-btn" onclick="showPage('contact')">
-                        <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                        <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
                         <span>Plan gratis gesprek</span>
                     </a>
                 </div>
@@ -1637,15 +1830,15 @@
         <div class="page" id="portfolio">
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title">Our Portfolio</h2>
+                    <h2 class="section-title">Ons Portfolio</h2>
                     <p class="section-subtitle">
                         Ons Werk. Jouw Inspiratie. Van showcase-websites tot luxe ecommerce - dit is wat wij bouwen.
                     </p>
                     <div class="portfolio-grid" id="portfolioGrid">
                         <!-- Portfolio items will be loaded here -->
-                        <div class="portfolio-card loading-placeholder" style="height: 400px;"></div>
-                        <div class="portfolio-card loading-placeholder" style="height: 400px;"></div>
-                        <div class="portfolio-card loading-placeholder" style="height: 400px;"></div>
+                        <div class="portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="portfolio-card loading-placeholder" style="height: 350px;"></div>
+                        <div class="portfolio-card loading-placeholder" style="height: 350px;"></div>
                     </div>
                 </div>
             </section>
@@ -1669,19 +1862,19 @@
                         Innovatie ontmoet expertise in digitale oplossingen
                     </p>
                     
-                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
+                    <div style="max-width: 100%; margin: 0 auto; text-align: center;">
+                        <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                             Van Appiah is een innovatief bedrijf gericht op het ontwikkelen van op maat gemaakte digitale oplossingen 
                             en het ondersteunen van verschillende bedrijven. We creëren en beheren websites en applicaties op maat, 
                             zoals showcase-sites, die bedrijven helpen zichzelf te presenteren en te groeien.
                         </p>
                         
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">
+                        <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                             Van e-commerce en sociale media tot het ontwerpen van unieke merkstrategieën, Van Appiah biedt een breed 
                             scala aan diensten die bedrijven in verschillende sectoren helpen hun doelen te bereiken.
                         </p>
                         
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 3rem;">
+                        <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
                             Met een focus op kwaliteit, creativiteit en samenwerking streven we ernaar elke klant de tools en 
                             ondersteuning te bieden die ze nodig hebben om te slagen in de digitale wereld.
                         </p>
@@ -1704,48 +1897,48 @@
                         Klaar om je volgende digitale project te starten? Laten we bespreken hoe we jouw bedrijf kunnen laten groeien.
                     </p>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem;">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: var(--spacing-xl); margin-top: var(--spacing-xl);">
                         <div>
-                            <h3 class="mb-3" style="color: var(--primary-dark); font-family: var(--font-display); font-size: 1.5rem;">Contactgegevens</h3>
-                            <div class="mb-4">
-                                <p style="margin-bottom: 1rem;"><strong>Website:</strong> <a href="https://vanappiah.com" target="_blank" style="color: var(--accent-blue);">vanappiah.com</a></p>
-                                <p style="margin-bottom: 1rem;"><strong>Email:</strong> vanappiah.com@gmail.com</p>
-                                <p style="margin-bottom: 1rem;"><strong>Telefoon:</strong> 06 57160395</p>
-                                <p style="margin-bottom: 1rem;"><strong>Locatie:</strong> Nederland</p>
-                                <p style="margin-bottom: 1rem;"><strong>Reactietijd:</strong> Binnen 24 uur</p>
+                            <h3 style="color: var(--text-primary); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: var(--spacing-lg);">Contactgegevens</h3>
+                            <div style="margin-bottom: var(--spacing-lg);">
+                                <p style="margin-bottom: var(--spacing-sm);"><strong>Website:</strong> <a href="https://vanappiah.com" target="_blank" style="color: var(--primary);">vanappiah.com</a></p>
+                                <p style="margin-bottom: var(--spacing-sm);"><strong>Email:</strong> vanappiah.com@gmail.com</p>
+                                <p style="margin-bottom: var(--spacing-sm);"><strong>Telefoon:</strong> 06 57160395</p>
+                                <p style="margin-bottom: var(--spacing-sm);"><strong>Locatie:</strong> Nederland</p>
+                                <p style="margin-bottom: var(--spacing-sm);"><strong>Reactietijd:</strong> Binnen 24 uur</p>
                             </div>
 
-                            <a href="https://wa.me/31657160395" target="_blank" class="footer-whatsapp">
+                            <a href="https://api.whatsapp.com/send/?phone=31657160395&text&type=phone_number&app_absent=0" target="_blank" class="footer-whatsapp">
                                 <span>💬</span>
                                 Stel je vraag via WhatsApp
                             </a>
                             
-                            <h4 class="mb-2 mt-4" style="color: var(--primary-dark); font-size: 1.2rem;">Onze Diensten</h4>
+                            <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: var(--spacing-xl) 0 var(--spacing-md) 0;">Onze Diensten</h4>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Op Maat Gemaakte Website Ontwikkeling</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• E-commerce Oplossingen</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Bedrijfs Showcase Sites</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Merkstrategie & Design</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Digitale Marketing Ondersteuning</li>
+                                <li style="margin-bottom: var(--spacing-xs); color: var(--text-secondary);">• Op Maat Gemaakte Website Ontwikkeling</li>
+                                <li style="margin-bottom: var(--spacing-xs); color: var(--text-secondary);">• E-commerce Oplossingen</li>
+                                <li style="margin-bottom: var(--spacing-xs); color: var(--text-secondary);">• Bedrijfs Showcase Sites</li>
+                                <li style="margin-bottom: var(--spacing-xs); color: var(--text-secondary);">• Merkstrategie & Design</li>
+                                <li style="margin-bottom: var(--spacing-xs); color: var(--text-secondary);">• Digitale Marketing Ondersteuning</li>
                             </ul>
 
-                            <h4 class="mb-2 mt-4" style="color: var(--primary-dark); font-size: 1.2rem;">Volg Ons</h4>
+                            <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: var(--spacing-xl) 0 var(--spacing-md) 0;">Volg Ons</h4>
                             <div class="social-links">
                                 <a href="https://www.instagram.com/van_appiah/" target="_blank" class="social-link">
                                     <i data-lucide="instagram" class="social-icon"></i>
                                     <span>Instagram</span>
                                 </a>
-                                <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="social-link">
+                                <a href="https://www.facebook.com/profile.php?id=61571888426620&mibextid=wwXIfr&rdid=vETAEuGwiLoc9ySu&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16xgn7BFLj%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="social-link">
                                     <i data-lucide="facebook" class="social-icon"></i>
                                     <span>Facebook</span>
                                 </a>
-                                <a href="https://linkedin.com/company/vanappiah" target="_blank" class="social-link">
+                                <a href="https://www.linkedin.com/in/yaiden-k-45888b376/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link">
                                     <i data-lucide="linkedin" class="social-icon"></i>
                                     <span>LinkedIn</span>
                                 </a>
-                                <a href="https://x.com/vanappiah" target="_blank" class="social-link">
-                                    <i data-lucide="twitter" class="social-icon"></i>
-                                    <span>X (Twitter)</span>
+                                <a href="https://www.tiktok.com/@vanappiah?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link">
+                                    <i data-lucide="video" class="social-icon"></i>
+                                    <span>TikTok</span>
                                 </a>
                             </div>
                         </div>
@@ -1769,7 +1962,7 @@
                                     <textarea id="message" name="message" class="form-textarea" required placeholder="Vertel ons over je project, doelgroep en wensen..."></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                    <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                                    <i data-lucide="send" style="width: 18px; height: 18px;"></i>
                                     Verstuur Bericht
                                 </button>
                                 <div class="form-success" id="formSuccess">
@@ -1779,145 +1972,72 @@
                         </div>
                     </div>
 
-                    <!-- FAQ Section -->
-                    <div style="max-width: 800px; margin: 4rem auto 0;">
-                        <h3 style="color: var(--primary-dark); font-family: var(--font-display); font-size: 1.8rem; text-align: center; margin-bottom: 2rem;">Veelgestelde Vragen</h3>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <span>Hoelang duurt het ontwikkelen van een website?</span>
-                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
-                            </div>
-                            <div class="faq-answer">
-                                Een standaard website duurt 2-4 weken, een webshop 4-8 weken. Dit hangt af van de complexiteit en het aantal pagina's. We houden je altijd op de hoogte van de voortgang.
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <span>Wat zijn de kosten voor een website?</span>
-                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
-                            </div>
-                            <div class="faq-answer">
-                                Onze websites starten vanaf €1.500 voor een basis showcase site. E-commerce oplossingen vanaf €3.500. We maken altijd een offerte op maat na een gratis kennismakingsgesprek.
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <span>Krijg ik ondersteuning na de lancering?</span>
-                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
-                            </div>
-                            <div class="faq-answer">
-                                Ja! We bieden 30 dagen gratis ondersteuning na lancering. Daarna kun je kiezen voor een onderhoudscontract of ondersteuning per uur.
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <span>Kan ik zelf content aanpassen?</span>
-                                <i data-lucide="chevron-down" style="width: 20px; height: 20px; transition: transform 0.3s;"></i>
-                            </div>
-                            <div class="faq-answer">
-                                Absoluut! We bouwen gebruiksvriendelijke websites met een eenvoudig beheersysteem. Je krijgt ook training om zelf wijzigingen te maken.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                 <!-- FAQ Section -->
+<!-- FAQ Section -->
+<div style="max-width: 100%; margin: var(--spacing-2xl) auto 0;">
+    <h3 style="color: var(--text-primary); font-family: var(--font-display); font-size: 1.5rem; text-align: center; margin-bottom: var(--spacing-xl);">Veelgestelde Vragen</h3>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Hoelang duurt het maken van een website?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
         </div>
-
-        <!-- Legal Pages -->
-        <div class="page" id="terms">
-            <section class="section">
-                <div class="container">
-                    <h2 class="section-title">Algemene Voorwaarden</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Laatst bijgewerkt: Januari 2025
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Door gebruik te maken van onze diensten ga je akkoord met deze voorwaarden. Van Appiah is niet aansprakelijk voor indirecte schade, dataverlies of fouten van derden.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Alle ontwerpen, sites en producten blijven eigendom van Van Appiah tot volledige betaling. Wij behouden het recht om projecten als portfolio-vermelding te tonen.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Voor klachten, feedback of vragen kun je contact met ons opnemen via vanappiah.com@gmail.com.
-                        </p>
-                        <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="page" id="return">
-            <section class="section">
-                <div class="container">
-                    <h2 class="section-title">Retourbeleid</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Laatst bijgewerkt: Januari 2025
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Aangezien wij digitale diensten leveren, kunnen reeds uitgevoerde projecten of uren niet worden geretourneerd. Bij ontevredenheid streven we altijd naar een passende oplossing.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Neem direct contact met ons op om je situatie te bespreken.
-                        </p>
-                        <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="page" id="warranty">
-            <section class="section">
-                <div class="container">
-                    <h2 class="section-title">Service & Garantie</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Laatst bijgewerkt: Januari 2025
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Wij bieden ondersteuning op al onze digitale oplossingen tot 30 dagen na oplevering.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Na deze periode bieden we onderhoud of aanpassingen tegen een afgesproken tarief. Klanten kunnen altijd contact opnemen voor ondersteuning, updates of uitbreidingen.
-                        </p>
-                        <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="page" id="privacy">
-            <section class="section">
-                <div class="container">
-                    <h2 class="section-title">Privacybeleid</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                            Laatst bijgewerkt: Januari 2025
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Van Appiah respecteert je privacy. Wij verzamelen alleen gegevens die nodig zijn voor het leveren van onze diensten en gebruiken deze nooit zonder toestemming voor externe doeleinden.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Gegevens die wij verzamelen worden veilig bewaard en niet gedeeld met derden, tenzij dit wettelijk verplicht is of noodzakelijk voor uitvoering van een dienst.
-                        </p>
-                        <p style="line-height: 1.8; margin-bottom: 2rem;">
-                            Voor vragen over je privacy kun je altijd contact opnemen via vanappiah.com@gmail.com.
-                        </p>
-                        <div class="hero-buttons" style="margin-top: 3rem;">
-                            <a href="#" class="btn btn-outline" onclick="showPage('contact')">Neem Contact Op</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="faq-answer">
+            Dat hangt af van de wensen. Simpele websites (zonder beheersysteem) kunnen al binnen 1 tot 3 werkdagen klaar zijn. Complexere sites met CMS of extra functies duren gemiddeld 5 tot 10 werkdagen. Spoedaanvragen voor 12:00 kunnen – in overleg – nog dezelfde dag opgeleverd worden.
         </div>
     </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wat kost een website?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
+        </div>
+        <div class="faq-answer">
+            De kosten starten vanaf €75 voor een eenvoudige, statische pagina. Voor een basis website met CMS starten de prijzen vanaf €150. We bespreken je wensen en geven vooraf een duidelijke prijsindicatie.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Bieden jullie ondersteuning en garantie?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
+        </div>
+        <div class="faq-answer">
+            Ja, wij bieden standaard 30 dagen gratis ondersteuning na oplevering. Mocht je daarna extra hulp of updates willen, dan kun je kiezen voor een onderhoudspakket of losse ondersteuning tegen een tarief. Ook kleine aanpassingen kunnen wij dan verzorgen.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Kan ik zelf teksten en foto's aanpassen?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
+        </div>
+        <div class="faq-answer">
+            Zeker. Als je kiest voor een site met beheersysteem (CMS), krijg je toegang tot een gebruiksvriendelijke omgeving waarin je zelf teksten, foto’s en content kunt wijzigen. We leggen je uit hoe het werkt.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Helpen jullie ook met marketing of video’s?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
+        </div>
+        <div class="faq-answer">
+            Ja! We denken graag mee over je online groei. We kunnen helpen met social media marketing, bedrijfsvideo’s, advertenties en het opzetten van sterke visuele content. Neem contact op voor de mogelijkheden.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Denken jullie ook mee over functies die ik misschien nodig heb?</span>
+            <i data-lucide="chevron-down" style="width: 18px; height: 18px; transition: transform 0.3s;"></i>
+        </div>
+        <div class="faq-answer">
+            Absoluut. Tijdens de samenwerking kijken we actief mee naar jouw doelgroep en doelen. Als we kansen of slimme functies zien die bij jouw bedrijf passen, dan adviseren we die vrijblijvend.
+        </div>
+    </div>
+</div>
+
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -1943,7 +2063,7 @@
                             <span class="footer-icon">📍</span>
                             <span>Nederland</span>
                         </div>
-                        <a href="https://wa.me/31657160395" target="_blank" class="footer-whatsapp">
+                        <a href="https://api.whatsapp.com/send/?phone=31657160395&text&type=phone_number&app_absent=0" target="_blank" class="footer-whatsapp">
                             <span>💬</span>
                             WhatsApp
                         </a>
@@ -1980,17 +2100,17 @@
                             <i data-lucide="instagram" class="footer-social-icon"></i>
                             <span>Instagram</span>
                         </a>
-                        <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="footer-social-link">
+                        <a href="https://www.facebook.com/profile.php?id=61571888426620&mibextid=wwXIfr&rdid=vETAEuGwiLoc9ySu&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16xgn7BFLj%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="footer-social-link">
                             <i data-lucide="facebook" class="footer-social-icon"></i>
                             <span>Facebook</span>
                         </a>
-                        <a href="https://linkedin.com/company/vanappiah" target="_blank" class="footer-social-link">
+                        <a href="https://www.linkedin.com/in/yaiden-k-45888b376/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="footer-social-link">
                             <i data-lucide="linkedin" class="footer-social-icon"></i>
                             <span>LinkedIn</span>
                         </a>
-                        <a href="https://x.com/vanappiah" target="_blank" class="footer-social-link">
-                            <i data-lucide="twitter" class="footer-social-icon"></i>
-                            <span>X (Twitter)</span>
+                        <a href="https://www.tiktok.com/@vanappiah?is_from_webapp=1&sender_device=pc" target="_blank" class="footer-social-link">
+                            <i data-lucide="video" class="footer-social-icon"></i>
+                            <span>TikTok</span>
                         </a>
                     </div>
                 </div>
@@ -1998,10 +2118,10 @@
 
             <div class="footer-bottom">
                 <div class="footer-brand">
-                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--background-white); margin: 0;">Van Appiah</h3>
-                    <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.8); margin: 0.5rem 0 0 0; font-weight: 400; line-height: 1.5;">Digitale oplossingen die bedrijven laten groeien</p>
+                    <h3>Van Appiah</h3>
+                    <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8); margin: var(--spacing-xs) 0 0 0; font-weight: 400; line-height: 1.4;">Digitale oplossingen die bedrijven laten groeien</p>
                 </div>
-                <p style="margin-top: 1rem;">© 2025 Van Appiah. Alle rechten voorbehouden.</p>
+                <p style="margin-top: var(--spacing-md);">© 2025 Van Appiah. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
@@ -2018,23 +2138,20 @@
         // Google Sheets CSV URL
         const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaT1XO14T_dVasI4M1PhxS46v03dB-8DsUhU0-kzqmm6DJUn6z2Yy0m2NQyPpCHktMvNxhbIXa6tg/pub?output=csv';
 
-        // FIXED URL HANDLING FUNCTIONS
+        // URL HANDLING FUNCTIONS
         function fixUrl(url) {
             if (!url || url.trim() === '') return '#';
             
             const cleanUrl = url.trim();
             
-            // Check if URL already has protocol
             if (cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://')) {
                 return cleanUrl;
             }
             
-            // Check if URL starts with www.
             if (cleanUrl.startsWith('www.')) {
                 return `https://${cleanUrl}`;
             }
             
-            // For any other case, add https://
             return `https://${cleanUrl}`;
         }
 
@@ -2042,8 +2159,6 @@
             if (!url || url.trim() === '') return false;
             
             const cleanUrl = url.trim();
-            
-            // Check for valid URL patterns
             const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
             const hasProtocol = cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://');
             const hasWww = cleanUrl.startsWith('www.');
@@ -2053,9 +2168,9 @@
 
         function createImageElement(src, alt, fallback = '🌐') {
             if (!src || src.trim() === '') {
-                return `<div style="font-size: 4rem; color: var(--lighter-grey); display: flex; align-items: center; justify-content: center; height: 100%;">${fallback}</div>`;
+                return `<div style="font-size: 2.5rem; color: var(--neutral-400); display: flex; align-items: center; justify-content: center; height: 100%;">${fallback}</div>`;
             }
-            return `<img src="${src}" alt="${alt}" onerror="this.parentElement.innerHTML='<div style=&quot;font-size: 4rem; color: var(--lighter-grey); display: flex; align-items: center; justify-content: center; height: 100%;&quot;>${fallback}</div>'" loading="lazy">`;
+            return `<img src="${src}" alt="${alt}" onerror="this.parentElement.innerHTML='<div style=&quot;font-size: 2.5rem; color: var(--neutral-400); display: flex; align-items: center; justify-content: center; height: 100%;&quot;>${fallback}</div>'" loading="lazy">`;
         }
 
         function getStatusInfo(status, websiteUrl) {
@@ -2069,19 +2184,16 @@
             
             const statusLower = status.toLowerCase();
             
-            // Check for online/live status
             if (statusLower.includes('online') || statusLower.includes('live') || statusLower.includes('completed') || statusLower.includes('voltooid')) {
                 return hasValidUrl ? 
                     { class: 'status-online', text: '🟢 Online', showButton: true } :
                     { class: 'status-offline', text: '⚫ Offline', showButton: false };
             }
             
-            // Check for offline/development status
             if (statusLower.includes('offline') || statusLower.includes('development') || statusLower.includes('progress') || statusLower.includes('ontwikkeling')) {
                 return { class: 'status-offline', text: '⚫ Offline', showButton: false };
             }
             
-            // Default case
             return hasValidUrl ? 
                 { class: 'status-online', text: '🟢 Online', showButton: true } :
                 { class: 'status-offline', text: '⚫ Offline', showButton: false };
@@ -2187,7 +2299,6 @@
                 
             } catch (error) {
                 console.error('Error loading portfolio data:', error);
-                // Fallback sample data
                 return [
                     {
                         projectName: "Rafle L'Argent",
@@ -2215,15 +2326,15 @@
             const onlineProjects = AppState.portfolioData
                 .filter(project => {
                     const statusInfo = getStatusInfo(project.status, project.websiteUrl);
-                    return statusInfo.showButton; // Only show projects with valid URLs
+                    return statusInfo.showButton;
                 })
                 .slice(0, 3);
 
             if (onlineProjects.length === 0) {
                 grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Projecten worden geladen...</h3>
-                        <p style="color: var(--lighter-grey);">Even geduld alsjeblieft</p>
+                    <div style="grid-column: 1 / -1; text-align: center; padding: var(--spacing-xl);">
+                        <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Projecten worden geladen...</h3>
+                        <p style="color: var(--text-tertiary);">Even geduld alsjeblieft</p>
                     </div>
                 `;
                 return;
@@ -2235,7 +2346,7 @@
                 const fixedUrl = fixUrl(project.websiteUrl);
                 
                 const words = project.shortDescription.split(' ');
-                const shortDescription = words.length > 12 ? words.slice(0, 12).join(' ') + '...' : words.join(' ');
+                const shortDescription = words.length > 10 ? words.slice(0, 10).join(' ') + '...' : words.join(' ');
                 
                 return `
                     <div class="mini-portfolio-card" onclick="openProjectDetail(${AppState.portfolioData.indexOf(project)})" data-aos="fade-up" data-aos-delay="${index * 100}">
@@ -2251,7 +2362,7 @@
                             <p class="mini-portfolio-description">${shortDescription}</p>
                             <div class="mini-portfolio-meta">
                                 <span class="mini-portfolio-client">${project.client ? `voor ${project.client}` : 'Van Appiah'}</span>
-                                <span style="font-size: 0.8rem; color: var(--lighter-grey);">${project.launchDate}</span>
+                                <span style="font-size: 0.75rem; color: var(--text-tertiary);">${project.launchDate}</span>
                             </div>
                             <div class="portfolio-actions">
                                 ${statusInfo.showButton ? `
@@ -2262,7 +2373,7 @@
                                 ` : `
                                     <span class="portfolio-btn portfolio-btn-disabled">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        Binnenkort beschikbaar
+                                        Binnenkort
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${AppState.portfolioData.indexOf(project)})">
@@ -2286,9 +2397,9 @@
 
             if (AppState.portfolioData.length === 0) {
                 grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Projecten worden geladen...</h3>
-                        <p style="color: var(--lighter-grey);">Even geduld alsjeblieft</p>
+                    <div style="grid-column: 1 / -1; text-align: center; padding: var(--spacing-xl);">
+                        <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Projecten worden geladen...</h3>
+                        <p style="color: var(--text-tertiary);">Even geduld alsjeblieft</p>
                     </div>
                 `;
                 return;
@@ -2300,7 +2411,7 @@
                 const fixedUrl = fixUrl(project.websiteUrl);
                 
                 const words = project.shortDescription.split(' ');
-                const shortDescription = words.length > 15 ? words.slice(0, 15).join(' ') + '...' : words.join(' ');
+                const shortDescription = words.length > 12 ? words.slice(0, 12).join(' ') + '...' : words.join(' ');
                 
                 return `
                     <div class="portfolio-card" onclick="openProjectDetail(${index})" data-aos="fade-up" data-aos-delay="${index * 100}">
@@ -2316,7 +2427,7 @@
                             <p class="portfolio-description">${shortDescription}</p>
                             <div class="portfolio-meta">
                                 <span class="portfolio-client">${project.client ? `voor ${project.client}` : 'Van Appiah'}</span>
-                                <span style="font-size: 0.8rem; color: var(--lighter-grey);">${project.launchDate}</span>
+                                <span style="font-size: 0.75rem; color: var(--text-tertiary);">${project.launchDate}</span>
                             </div>
                             <div class="portfolio-actions">
                                 ${statusInfo.showButton ? `
@@ -2327,7 +2438,7 @@
                                 ` : `
                                     <span class="portfolio-btn portfolio-btn-disabled">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        ${statusInfo.text.includes('Offline') ? 'Momenteel offline' : 'Binnenkort beschikbaar'}
+                                        Binnenkort
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${index})">
@@ -2359,9 +2470,9 @@
                 const clientElement = document.getElementById('clientCount');
                 const techElement = document.getElementById('techCount');
 
-                if (projectElement) animateNumber(projectElement, Math.max(projectCount, 6));
-                if (clientElement) animateNumber(clientElement, Math.max(clientCount, 6));
-                if (techElement) animateNumber(techElement, Math.max(techCount, 10));
+                if (projectElement) animateNumber(projectElement, Math.max(projectCount, 8));
+                if (clientElement) animateNumber(clientElement, Math.max(clientCount, 12));
+                if (techElement) animateNumber(techElement, Math.max(techCount, 15));
             }, 500);
         }
 
@@ -2393,7 +2504,7 @@
                 <div class="project-header">
                     <h1 class="project-title">${project.projectName}</h1>
                     <p class="project-subtitle">${project.shortDescription}</p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
+                    <div style="display: flex; gap: var(--spacing-sm); justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--spacing-md);">
                         <div class="portfolio-category ${categoryClass}">${project.category}</div>
                         <div class="status-badge ${statusInfo.class}">${statusInfo.text}</div>
                     </div>
@@ -2405,24 +2516,24 @@
 
                 <div class="project-info">
                     <div class="project-description">
-                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-dark);">Over dit project</h3>
-                        <p>${project.description}</p>
+                        <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: var(--spacing-md); color: var(--text-primary);">Over dit project</h3>
+                        <p style="margin-bottom: var(--spacing-lg);">${project.description}</p>
                         
                         ${statusInfo.showButton ? `
                             <a href="${fixedUrl}" target="_blank" rel="noopener noreferrer" class="project-website-btn">
-                                <i data-lucide="external-link" style="width: 20px; height: 20px;"></i>
+                                <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
                                 Bezoek Website
                             </a>
                         ` : `
                             <div class="project-website-btn disabled">
-                                <i data-lucide="clock" style="width: 20px; height: 20px;"></i>
+                                <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
                                 ${statusInfo.text.includes('Offline') ? 'Momenteel offline' : 'Binnenkort beschikbaar'}
                             </div>
                         `}
                     </div>
 
                     <div class="project-sidebar">
-                        <h4 style="font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--primary-dark);">Project Details</h4>
+                        <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: var(--spacing-lg); color: var(--text-primary);">Project Details</h4>
                         
                         ${project.client ? `
                             <div class="project-detail-item">
@@ -2481,16 +2592,19 @@
                 AppState.currentPage = pageId;
             }
 
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Update nav links
+            document.querySelectorAll('.nav-link, .mobile-menu-links a').forEach(link => {
                 link.classList.remove('active');
             });
 
-            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
+            const activeLinks = document.querySelectorAll(`[data-page="${pageId}"]`);
+            activeLinks.forEach(link => {
+                link.classList.add('active');
+            });
 
-            document.getElementById('navLinks').classList.remove('active');
+            // Close mobile menu
+            closeMobileMenu();
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             const url = new URL(window.location);
@@ -2505,19 +2619,42 @@
         }
 
         function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
             const menuBtn = document.getElementById('mobileMenuBtn');
             
-            navLinks.classList.toggle('active');
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                menuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Update menu icon
+                const icon = menuBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'x');
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            menuBtn.classList.remove('active');
+            document.body.style.overflow = '';
             
             // Update menu icon
             const icon = menuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
-            
+            icon.setAttribute('data-lucide', 'menu');
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
@@ -2576,7 +2713,7 @@ Verzonden via Van Appiah website contactformulier
             const navbar = document.getElementById('navbar');
             
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
+                if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
@@ -2611,7 +2748,7 @@ Verzonden via Van Appiah website contactformulier
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hidden');
                 AppState.loading = false;
-            }, 1500);
+            }, 1000);
         }
 
         // Initialize Application
@@ -2633,10 +2770,11 @@ Verzonden via Van Appiah website contactformulier
                 // Initialize AOS animations
                 if (typeof AOS !== 'undefined') {
                     AOS.init({
-                        duration: 800,
-                        easing: 'ease-out',
+                        duration: 600,
+                        easing: 'ease-out-cubic',
                         once: true,
-                        offset: 100
+                        offset: 50,
+                        delay: 50
                     });
                 }
 
@@ -2676,6 +2814,48 @@ Verzonden via Van Appiah website contactformulier
             console.error('Unhandled promise rejection:', e.reason);
             e.preventDefault();
         });
+
+        // Touch and gesture support for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleGesture();
+        }, { passive: true });
+
+        function handleGesture() {
+            if (touchEndY < touchStartY - 50) {
+                // Swipe up
+            }
+            if (touchEndY > touchStartY + 50) {
+                // Swipe down
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !menuBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent body scroll when mobile menu is open
+        document.addEventListener('touchmove', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
