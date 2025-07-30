@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,12 +55,7 @@
             --category-ecommerce: #8e44ad;
             --category-webdesign: #2980b9;
             --category-showcase: #27ae60;
-            
-            /* Status Colors */
-            --status-online: #10b981;
-            --status-completed: #059669;
-            --status-offline: #6b7280;
-            --status-development: #f59e0b;
+            --category-business: #e67e22;
         }
 
         /* Reset & Base */
@@ -134,7 +129,7 @@
             margin-top: 2rem;
         }
 
-        /* Navigation - Enhanced Mobile */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -235,7 +230,7 @@
             background: var(--background-light);
         }
 
-        /* Enhanced Mobile CTA Bar */
+        /* Mobile CTA Bar */
         .mobile-cta-bar {
             position: fixed;
             bottom: 0;
@@ -243,7 +238,7 @@
             right: 0;
             background: var(--background-white);
             border-top: 1px solid var(--border-light);
-            padding: 0.75rem;
+            padding: 1rem;
             display: none;
             z-index: 999;
             box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
@@ -269,7 +264,6 @@
             border-radius: var(--border-radius-xs);
             transition: var(--transition);
             min-height: 60px;
-            text-align: center;
         }
 
         .mobile-cta-btn:hover {
@@ -284,15 +278,6 @@
 
         .mobile-cta-btn.primary:hover {
             background: var(--primary-dark);
-        }
-
-        .mobile-cta-btn.whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .mobile-cta-btn.whatsapp:hover {
-            background: #128C7E;
         }
 
         /* Page Container */
@@ -310,7 +295,7 @@
             display: block;
         }
 
-        /* Hero Section - Enhanced Mobile */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -359,7 +344,7 @@
             margin-bottom: 4rem;
         }
 
-        /* Scroll Indicator - Mobile Optimized */
+        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -550,7 +535,7 @@
             line-height: 1.6;
         }
 
-        /* Enhanced Portfolio Grid */
+        /* Portfolio Grid */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -643,7 +628,10 @@
             background: var(--category-showcase);
         }
 
-        /* Enhanced Status Badges with Visual Distinctions */
+        .category-business {
+            background: var(--category-business);
+        }
+
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -654,43 +642,16 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            position: relative;
         }
 
         .status-online {
-            background: var(--status-online);
-            color: white;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-        }
-
-        .status-online::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .status-completed {
-            background: var(--status-completed);
+            background: var(--accent-green);
             color: white;
         }
 
         .status-offline {
-            background: var(--status-offline);
+            background: var(--light-grey);
             color: white;
-        }
-
-        .status-development {
-            background: var(--status-development);
-            color: white;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
         }
 
         .portfolio-title, .mini-portfolio-title {
@@ -739,6 +700,8 @@
             font-size: 0.85rem;
             transition: var(--transition);
             min-height: 44px;
+            border: none;
+            cursor: pointer;
         }
 
         .portfolio-btn-primary {
@@ -760,6 +723,18 @@
         .portfolio-btn-secondary:hover {
             background: var(--border-light);
             color: var(--text-primary);
+        }
+
+        .portfolio-btn-disabled {
+            background: var(--light-grey);
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .portfolio-btn-disabled:hover {
+            transform: none;
+            background: var(--light-grey);
         }
 
         /* Project Detail Page */
@@ -1030,7 +1005,7 @@
             display: block;
         }
 
-        /* Enhanced Social Icons */
+        /* Social Icons */
         .social-icon, .footer-social-icon {
             width: 20px;
             height: 20px;
@@ -1060,26 +1035,6 @@
             box-shadow: var(--shadow-md);
         }
 
-        .social-link.linkedin:hover {
-            border-color: #0077b5;
-            color: #0077b5;
-        }
-
-        .social-link.whatsapp:hover {
-            border-color: #25D366;
-            color: #25D366;
-        }
-
-        .social-link.facebook:hover {
-            border-color: #1877f2;
-            color: #1877f2;
-        }
-
-        .social-link.tiktok:hover {
-            border-color: #000000;
-            color: #000000;
-        }
-
         .social-links {
             display: flex;
             gap: 1rem;
@@ -1087,7 +1042,7 @@
             justify-content: center;
         }
 
-        /* Footer Styles - Enhanced */
+        /* Footer Styles */
         .site-footer {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
             color: var(--background-white);
@@ -1202,26 +1157,6 @@
             transform: translateY(-2px);
         }
 
-        .footer-social-link.linkedin:hover {
-            background: rgba(0, 119, 181, 0.2);
-            border-color: #0077b5;
-        }
-
-        .footer-social-link.whatsapp:hover {
-            background: rgba(37, 211, 102, 0.2);
-            border-color: #25D366;
-        }
-
-        .footer-social-link.facebook:hover {
-            background: rgba(24, 119, 242, 0.2);
-            border-color: #1877f2;
-        }
-
-        .footer-social-link.tiktok:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #ffffff;
-        }
-
         .footer-social-icon {
             font-size: 1.2rem;
             width: 24px;
@@ -1300,6 +1235,23 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Error States */
+        .error-message {
+            background: var(--accent-red);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .loading-placeholder {
+            background: linear-gradient(90deg, var(--background-light) 25%, rgba(255,255,255,0.5) 50%, var(--background-light) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -1322,7 +1274,12 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Enhanced Responsive Design - Mobile First */
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1422,12 +1379,6 @@
 
             .social-links {
                 justify-content: center;
-                gap: 0.75rem;
-            }
-
-            .social-link {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
             }
 
             .section {
@@ -1477,18 +1428,6 @@
                 font-size: 0.7rem;
                 padding: 0.5rem 0.25rem;
             }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .social-link {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
         }
 
         /* Utility Classes */
@@ -1506,19 +1445,7 @@
         .hidden { display: none; }
         .visible { display: block; }
 
-        /* Loading States */
-        .loading-placeholder {
-            background: linear-gradient(90deg, var(--background-light) 25%, rgba(255,255,255,0.5) 50%, var(--background-light) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Reduce motion for users who prefer it */
+        /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -1556,14 +1483,14 @@
         </div>
     </nav>
 
-    <!-- Enhanced Mobile CTA Bar -->
+    <!-- Mobile CTA Bar -->
     <div class="mobile-cta-bar" id="mobileCTABar">
         <div class="mobile-cta-buttons">
             <a href="tel:+31657160395" class="mobile-cta-btn">
                 <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
                 <span>Bellen</span>
             </a>
-            <a href="https://wa.me/31657160395" target="_blank" class="mobile-cta-btn whatsapp">
+            <a href="https://wa.me/31657160395" target="_blank" class="mobile-cta-btn">
                 <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
                 <span>WhatsApp</span>
             </a>
@@ -1804,21 +1731,21 @@
 
                             <h4 class="mb-2 mt-4" style="color: var(--primary-dark); font-size: 1.2rem;">Volg Ons</h4>
                             <div class="social-links">
-                                <a href="https://www.linkedin.com/in/yaiden-k-45888b376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link linkedin">
-                                    <i data-lucide="linkedin" class="social-icon"></i>
-                                    <span>LinkedIn</span>
+                                <a href="https://www.instagram.com/van_appiah/" target="_blank" class="social-link">
+                                    <i data-lucide="instagram" class="social-icon"></i>
+                                    <span>Instagram</span>
                                 </a>
-                                <a href="https://wa.me/31657160395" target="_blank" class="social-link whatsapp">
-                                    <i data-lucide="message-circle" class="social-icon"></i>
-                                    <span>WhatsApp</span>
-                                </a>
-                                <a href="https://www.facebook.com/share/16xgn7BFLj/?mibextid=wwXIfr" target="_blank" class="social-link facebook">
+                                <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="social-link">
                                     <i data-lucide="facebook" class="social-icon"></i>
                                     <span>Facebook</span>
                                 </a>
-                                <a href="https://www.tiktok.com/@vanappiah?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link tiktok">
-                                    <i data-lucide="video" class="social-icon"></i>
-                                    <span>TikTok</span>
+                                <a href="https://linkedin.com/company/vanappiah" target="_blank" class="social-link">
+                                    <i data-lucide="linkedin" class="social-icon"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://x.com/vanappiah" target="_blank" class="social-link">
+                                    <i data-lucide="twitter" class="social-icon"></i>
+                                    <span>X (Twitter)</span>
                                 </a>
                             </div>
                         </div>
@@ -2049,21 +1976,21 @@
                 <div class="footer-column">
                     <h4 class="footer-title">Socials</h4>
                     <div class="footer-socials">
-                        <a href="https://www.linkedin.com/in/yaiden-k-45888b376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="footer-social-link linkedin">
-                            <i data-lucide="linkedin" class="footer-social-icon"></i>
-                            <span>LinkedIn</span>
+                        <a href="https://www.instagram.com/van_appiah/" target="_blank" class="footer-social-link">
+                            <i data-lucide="instagram" class="footer-social-icon"></i>
+                            <span>Instagram</span>
                         </a>
-                        <a href="https://wa.me/31657160395" target="_blank" class="footer-social-link whatsapp">
-                            <i data-lucide="message-circle" class="footer-social-icon"></i>
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="https://www.facebook.com/share/16xgn7BFLj/?mibextid=wwXIfr" target="_blank" class="footer-social-link facebook">
+                        <a href="https://www.facebook.com/people/VA-Appiah/pfbid02jaBgmLoct9BKCFm5Sfgxj4EWP2daBZQEYjhLEAHArTytqVCRz6ep2gPHKH89CcKNl" target="_blank" class="footer-social-link">
                             <i data-lucide="facebook" class="footer-social-icon"></i>
                             <span>Facebook</span>
                         </a>
-                        <a href="https://www.tiktok.com/@vanappiah?is_from_webapp=1&sender_device=pc" target="_blank" class="footer-social-link tiktok">
-                            <i data-lucide="video" class="footer-social-icon"></i>
-                            <span>TikTok</span>
+                        <a href="https://linkedin.com/company/vanappiah" target="_blank" class="footer-social-link">
+                            <i data-lucide="linkedin" class="footer-social-icon"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://x.com/vanappiah" target="_blank" class="footer-social-link">
+                            <i data-lucide="twitter" class="footer-social-icon"></i>
+                            <span>X (Twitter)</span>
                         </a>
                     </div>
                 </div>
@@ -2091,7 +2018,39 @@
         // Google Sheets CSV URL
         const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaT1XO14T_dVasI4M1PhxS46v03dB-8DsUhU0-kzqmm6DJUn6z2Yy0m2NQyPpCHktMvNxhbIXa6tg/pub?output=csv';
 
-        // Utility Functions
+        // FIXED URL HANDLING FUNCTIONS
+        function fixUrl(url) {
+            if (!url || url.trim() === '') return '#';
+            
+            const cleanUrl = url.trim();
+            
+            // Check if URL already has protocol
+            if (cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://')) {
+                return cleanUrl;
+            }
+            
+            // Check if URL starts with www.
+            if (cleanUrl.startsWith('www.')) {
+                return `https://${cleanUrl}`;
+            }
+            
+            // For any other case, add https://
+            return `https://${cleanUrl}`;
+        }
+
+        function isValidUrl(url) {
+            if (!url || url.trim() === '') return false;
+            
+            const cleanUrl = url.trim();
+            
+            // Check for valid URL patterns
+            const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            const hasProtocol = cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://');
+            const hasWww = cleanUrl.startsWith('www.');
+            
+            return urlPattern.test(cleanUrl) || hasProtocol || hasWww;
+        }
+
         function createImageElement(src, alt, fallback = '🌐') {
             if (!src || src.trim() === '') {
                 return `<div style="font-size: 4rem; color: var(--lighter-grey); display: flex; align-items: center; justify-content: center; height: 100%;">${fallback}</div>`;
@@ -2099,9 +2058,8 @@
             return `<img src="${src}" alt="${alt}" onerror="this.parentElement.innerHTML='<div style=&quot;font-size: 4rem; color: var(--lighter-grey); display: flex; align-items: center; justify-content: center; height: 100%;&quot;>${fallback}</div>'" loading="lazy">`;
         }
 
-        // Enhanced Status Info Function with Better Visual Distinctions
         function getStatusInfo(status, websiteUrl) {
-            const hasValidUrl = hasValidWebsiteUrl(websiteUrl);
+            const hasValidUrl = isValidUrl(websiteUrl);
             
             if (!status) {
                 return hasValidUrl ? 
@@ -2111,29 +2069,19 @@
             
             const statusLower = status.toLowerCase();
             
-            // Check for "Completed" status
-            if (statusLower.includes('completed') || statusLower.includes('voltooid')) {
+            // Check for online/live status
+            if (statusLower.includes('online') || statusLower.includes('live') || statusLower.includes('completed') || statusLower.includes('voltooid')) {
                 return hasValidUrl ? 
                     { class: 'status-online', text: '🟢 Online', showButton: true } :
-                    { class: 'status-completed', text: '✅ Completed', showButton: false };
+                    { class: 'status-offline', text: '⚫ Offline', showButton: false };
             }
             
-            // Check for "Online" status
-            if (statusLower.includes('online') || statusLower.includes('live')) {
-                return { class: 'status-online', text: '🟢 Online', showButton: true };
-            }
-            
-            // Check for "Offline" status
-            if (statusLower.includes('offline')) {
+            // Check for offline/development status
+            if (statusLower.includes('offline') || statusLower.includes('development') || statusLower.includes('progress') || statusLower.includes('ontwikkeling')) {
                 return { class: 'status-offline', text: '⚫ Offline', showButton: false };
             }
             
-            // Check for development/progress status
-            if (statusLower.includes('development') || statusLower.includes('progress') || statusLower.includes('ontwikkeling')) {
-                return { class: 'status-development', text: '🔧 In Ontwikkeling', showButton: false };
-            }
-            
-            // Default fallback
+            // Default case
             return hasValidUrl ? 
                 { class: 'status-online', text: '🟢 Online', showButton: true } :
                 { class: 'status-offline', text: '⚫ Offline', showButton: false };
@@ -2144,6 +2092,7 @@
             const categoryLower = category.toLowerCase();
             if (categoryLower.includes('ecommerce') || categoryLower.includes('e-commerce')) return 'category-ecommerce';
             if (categoryLower.includes('webdesign') || categoryLower.includes('web design')) return 'category-webdesign';
+            if (categoryLower.includes('business')) return 'category-business';
             return 'category-showcase';
         }
 
@@ -2168,12 +2117,6 @@
             }, 16);
         }
 
-        function hasValidWebsiteUrl(url) {
-            if (!url || url.trim() === '') return false;
-            const trimmedUrl = url.trim().toLowerCase();
-            return trimmedUrl.startsWith('http://') || trimmedUrl.startsWith('https://') || trimmedUrl.startsWith('www.');
-        }
-
         function createProjectSlug(projectName) {
             return projectName
                 .toLowerCase()
@@ -2181,7 +2124,7 @@
                 .replace(/^-+|-+$/g, '');
         }
 
-        // Enhanced Data Loading Functions
+        // Data Loading Functions
         async function loadPortfolioData() {
             try {
                 console.log('Loading portfolio data from Google Sheets...');
@@ -2221,10 +2164,10 @@
                                     return {
                                         projectName: row['Project Name'] || 'Untitled Project',
                                         shortDescription: row['Short Description'] || 'No description available',
-                                        category: row['Category'] || 'Web Development',
+                                        category: row['Category'] || 'Showcase',
                                         client: row['Client'] || '',
                                         launchDate: row['Launch Date'] || '',
-                                        status: row['Status'] || 'Completed',
+                                        status: row['Status'] || 'Online',
                                         technologiesUsed: row['Technologies Used'] || '',
                                         imageUrl: row['Image URL'] || '',
                                         websiteUrl: row['Website URL'] || '',
@@ -2262,16 +2205,21 @@
             }
         }
 
-        // Enhanced Rendering Functions
+        // Rendering Functions
         function renderMiniPortfolio() {
             const grid = document.getElementById('miniPortfolioGrid');
             if (!grid) return;
 
             console.log('Rendering mini portfolio with', AppState.portfolioData.length, 'total projects');
 
-            const featuredProjects = AppState.portfolioData.slice(0, 3);
+            const onlineProjects = AppState.portfolioData
+                .filter(project => {
+                    const statusInfo = getStatusInfo(project.status, project.websiteUrl);
+                    return statusInfo.showButton; // Only show projects with valid URLs
+                })
+                .slice(0, 3);
 
-            if (featuredProjects.length === 0) {
+            if (onlineProjects.length === 0) {
                 grid.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
                         <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Projecten worden geladen...</h3>
@@ -2281,9 +2229,10 @@
                 return;
             }
 
-            grid.innerHTML = featuredProjects.map((project, index) => {
+            grid.innerHTML = onlineProjects.map((project, index) => {
                 const statusInfo = getStatusInfo(project.status, project.websiteUrl);
                 const categoryClass = getCategoryClass(project.category);
+                const fixedUrl = fixUrl(project.websiteUrl);
                 
                 const words = project.shortDescription.split(' ');
                 const shortDescription = words.length > 12 ? words.slice(0, 12).join(' ') + '...' : words.join(' ');
@@ -2306,14 +2255,14 @@
                             </div>
                             <div class="portfolio-actions">
                                 ${statusInfo.showButton ? `
-                                    <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
+                                    <a href="${fixedUrl}" target="_blank" rel="noopener noreferrer" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
                                         <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
                                         Live bekijken
                                     </a>
                                 ` : `
-                                    <span class="portfolio-btn portfolio-btn-secondary">
+                                    <span class="portfolio-btn portfolio-btn-disabled">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        ${statusInfo.text.includes('Offline') ? 'Offline' : 'Binnenkort'}
+                                        Binnenkort beschikbaar
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${AppState.portfolioData.indexOf(project)})">
@@ -2348,6 +2297,7 @@
             grid.innerHTML = AppState.portfolioData.map((project, index) => {
                 const statusInfo = getStatusInfo(project.status, project.websiteUrl);
                 const categoryClass = getCategoryClass(project.category);
+                const fixedUrl = fixUrl(project.websiteUrl);
                 
                 const words = project.shortDescription.split(' ');
                 const shortDescription = words.length > 15 ? words.slice(0, 15).join(' ') + '...' : words.join(' ');
@@ -2370,14 +2320,14 @@
                             </div>
                             <div class="portfolio-actions">
                                 ${statusInfo.showButton ? `
-                                    <a href="${project.websiteUrl}" target="_blank" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
+                                    <a href="${fixedUrl}" target="_blank" rel="noopener noreferrer" class="portfolio-btn portfolio-btn-primary" onclick="event.stopPropagation()">
                                         <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
                                         Live bekijken
                                     </a>
                                 ` : `
-                                    <span class="portfolio-btn portfolio-btn-secondary">
+                                    <span class="portfolio-btn portfolio-btn-disabled">
                                         <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
-                                        ${statusInfo.text.includes('Offline') ? 'Offline' : 'Binnenkort'}
+                                        ${statusInfo.text.includes('Offline') ? 'Momenteel offline' : 'Binnenkort beschikbaar'}
                                     </span>
                                 `}
                                 <button class="portfolio-btn portfolio-btn-secondary" onclick="event.stopPropagation(); openProjectDetail(${index})">
@@ -2432,6 +2382,7 @@
             const statusInfo = getStatusInfo(project.status, project.websiteUrl);
             const categoryClass = getCategoryClass(project.category);
             const technologies = formatTechnologies(project.technologiesUsed);
+            const fixedUrl = fixUrl(project.websiteUrl);
 
             container.innerHTML = `
                 <a href="#" class="project-back-btn" onclick="showPage('portfolio')">
@@ -2458,7 +2409,7 @@
                         <p>${project.description}</p>
                         
                         ${statusInfo.showButton ? `
-                            <a href="${project.websiteUrl}" target="_blank" class="project-website-btn">
+                            <a href="${fixedUrl}" target="_blank" rel="noopener noreferrer" class="project-website-btn">
                                 <i data-lucide="external-link" style="width: 20px; height: 20px;"></i>
                                 Bezoek Website
                             </a>
@@ -2482,7 +2433,7 @@
                         
                         ${project.launchDate ? `
                             <div class="project-detail-item">
-                                <div class="project-detail-label">Lanceerdatum</div>
+                                <div class="project-detail-label">Datum</div>
                                 <div class="project-detail-value">${project.launchDate}</div>
                             </div>
                         ` : ''}
@@ -2495,7 +2446,7 @@
                         </div>
                         
                         <div class="project-detail-item">
-                            <div class="project-detail-label">Categorie</div>
+                            <div class="project-detail-label">Type</div>
                             <div class="project-detail-value">${project.category}</div>
                         </div>
                         
